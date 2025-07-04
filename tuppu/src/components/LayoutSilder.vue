@@ -17,12 +17,12 @@
           <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
         </div>
       </div>
-      <div class="cell">
+      <!-- <div class="cell">
         {{ $t('home.whitePaper') }}
         <div class="cellRight">
           <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
         </div>
-      </div>
+      </div> -->
       <div class="advertising" @click="() => toPage('/node')">
         {{ $t('home.buyNodeTips') }}
         <p class="joinBtn">{{ $t('home.nowJoin') }}>>></p>
@@ -138,7 +138,7 @@ defineExpose({ open });
           line-height: 1.4rem;
         }
         .name {
-          font-size: 1rem;
+          font-size: 0.8rem;
           line-height: 1rem;
           color: #b8b8b8;
         }

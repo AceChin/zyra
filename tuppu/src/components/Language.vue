@@ -18,7 +18,7 @@ const { t : $t, locale } = useI18n()
 
 const columns = [
   { text: $t('home.chinese'), value: 'zh-CN' },
-  { text: $t('home.english'), value: 'en-US' },
+  { text: "English", value: 'en-US' },
 ]
 
 const props = defineProps({
