@@ -1,12 +1,12 @@
 <template>
   <div :class="['content', visible || 'show']">
-    <div v-if="visible" class="mask"></div>
+    <div v-if="visible" @click="close" class="mask"></div>
     <div :class="['layout', !visible || 'inout']">
       <div class="top">
-        <img class="avatar" src="" alt="" />
+        <img class="avatar" src="@/assets/images/head.png" alt="" />
         <div class="userInfo">
           <p class="address">{{ web3Store.accountMask || '' }}</p>
-          <p class="name">{{ web3Store.userInfo?.levelName }}</p>
+          <p class="name">{{ web3Store.userInfo?.levelName }} · 公共节点</p>
         </div>
         <img @click="close" class="close" src="@/assets/images/closeBtn.png" />
       </div>
@@ -38,6 +38,9 @@
     <Language :visible="languageVisible" :onClose="() => languageVisible = false" />
   </div>
 </template>
+<style lang="scss" scoped>
+.avatar{border-radius:1000rem;}
+</style>
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -132,7 +135,7 @@ defineExpose({ open });
         .address {
           color: #e0f64b;
           font-size: 1.1rem;
-          line-height: 1.2rem;
+          line-height: 1.4rem;
         }
         .name {
           font-size: 1rem;
