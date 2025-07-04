@@ -104,11 +104,12 @@ const onRecharge = () => {
 }
 
 onMounted(async () => {
-  needCharge.value = route.query.needCharge
+
   assetsStore.fetchAssetsAccounts().then(() => {
     nextTick(() => {
-      if(needCharge.value == 1) {
+      if(window.needCharge) {
         onRecharge()
+        window.needCharge = false
       }
     })
   })

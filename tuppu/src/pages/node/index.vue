@@ -139,7 +139,8 @@ const buyNode = async () => {
   } catch(e) {
     if(e.code == 400) {
       await confirm.value.open('余额不足，是否需要充值')
-      router.push('/assets?needCharge=1')
+      window.needCharge = true
+      router.push('/assets')
     }
     console.log(e.code)
   }
