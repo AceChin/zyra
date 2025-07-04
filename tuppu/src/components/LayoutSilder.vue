@@ -174,7 +174,7 @@ defineExpose({ open });
     }
     .advertising {
       width: 16rem;
-      height: 7.3rem;
+      min-height: 7.3rem;
       background: #E0F64B;
       border-radius: var(--van-dialog-radius);
       margin-top: 7.6rem;
