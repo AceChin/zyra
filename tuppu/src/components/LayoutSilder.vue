@@ -1,9 +1,9 @@
 <template>
   <div :class="['content', visible || 'show']">
-    <div v-if="visible" class="mask"></div>
+    <div v-if="visible" @click="close" class="mask"></div>
     <div :class="['layout', !visible || 'inout']">
       <div class="top">
-        <img class="avatar" src="" alt="" />
+        <img class="avatar" src="@/assets/images/head.png" alt="" />
         <div class="userInfo">
           <p class="address">{{ web3Store.accountMask || '' }}</p>
           <p class="name">{{ web3Store.userInfo?.levelName }} · {{ web3Store.userInfo?.nodeName }}</p>
@@ -17,12 +17,12 @@
           <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
         </div>
       </div>
-      <div class="cell">
+      <!-- <div class="cell">
         {{ $t('home.whitePaper') }}
         <div class="cellRight">
           <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
         </div>
-      </div>
+      </div> -->
       <div class="advertising" @click="() => toPage('/node')">
         {{ $t('home.buyNodeTips') }}
         <p class="joinBtn">{{ $t('home.nowJoin') }}>>></p>
@@ -38,6 +38,9 @@
     <Language :visible="languageVisible" :onClose="() => languageVisible = false" />
   </div>
 </template>
+<style lang="scss" scoped>
+.avatar{border-radius:1000rem;}
+</style>
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -96,7 +99,7 @@ defineExpose({ open });
     height: 100%;
     left: 0;
     top: 0;
-    background-color: rgba($color: #000000, $alpha: 0.4);
+    background-color: rgba($color: #000000, $alpha: 0.7);
   }
   .show {
     width: 100%;
@@ -112,6 +115,7 @@ defineExpose({ open });
     transition: left 0.5s;
     display: flex;
     flex-direction: column;
+    // box-shadow:0rem 0rem 1rem rgba(224,246,75,0.2);
 
     .top {
       display: flex;
@@ -132,7 +136,7 @@ defineExpose({ open });
         .address {
           color: #e0f64b;
           font-size: 1.1rem;
-          line-height: 1.2rem;
+          line-height: 1.4rem;
         }
         .name {
           font-size: 0.8rem;

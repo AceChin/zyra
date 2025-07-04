@@ -56,7 +56,7 @@ const toPage = (path) => {
   border-radius: 3.5rem;
   width: 93vw;
   color: #b8b8b8;
-  align-items: flex-end;
+  align-items: center;
   left: 3.5vw;
   position: fixed;
   bottom: 1.2rem;
@@ -68,10 +68,10 @@ const toPage = (path) => {
     align-items: center;
     color: #cdbdbd;
     font-size: 0.8rem;
-
+    line-height:100%;
     .icon {
-      width: 1.5rem;
-      margin-bottom: 0.2rem;
+      width: 1.5rem; display: block;
+      margin-bottom: 0.25rem;
     }
   }
 

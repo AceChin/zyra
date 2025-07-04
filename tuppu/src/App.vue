@@ -29,7 +29,8 @@
 <style lang="scss">
 
 #app {
-  background-color: #171717;
+  background: #171717 url('@/assets/images/bg.jpg') no-repeat center center;
+  background-size:100% 100%;
   min-height: 100vh;
   padding: 0;
 }
@@ -57,10 +58,11 @@
   --van-dialog-background: #202020;
   --van-toast-text-color: #ffffff;
   --van-popup-background: #202020;
-  --van-toast-background: rgba(0,0,0,0.6);
+  --van-toast-background: rgba(0,0,0,1);
   --van-toast-default-width: 150px;
   --van-radius-lg: 18px;
   --van-text-color: #ffffff;
+  --van-overlay-background:rgba(0, 0, 0, .8);
 }
 
 
