@@ -6,7 +6,7 @@
         <img class="avatar" src="" alt="" />
         <div class="userInfo">
           <p class="address">{{ web3Store.accountMask || '' }}</p>
-          <p class="name">{{ web3Store.userInfo?.levelName }}</p>
+          <p class="name">{{ web3Store.userInfo?.levelName }} · {{ web3Store.userInfo?.nodeName }}</p>
         </div>
         <img @click="close" class="close" src="@/assets/images/closeBtn.png" />
       </div>
@@ -135,9 +135,10 @@ defineExpose({ open });
           line-height: 1.2rem;
         }
         .name {
-          font-size: 1rem;
+          font-size: 0.8rem;
           line-height: 1rem;
           color: #b8b8b8;
+          margin-top: 0.2rem;
         }
       }
       .close {

@@ -37,6 +37,7 @@
             v-model="rechargeValue"
             :style="{margin: '0.6rem 0', borderColor: 'var(--van-primary-color)'}"
             placeholder=""
+            type="number"
             suffix="USDT" />
           <van-button
             class="button"

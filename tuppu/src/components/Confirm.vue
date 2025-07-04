@@ -1,5 +1,5 @@
 <template>
-  <Modal v-bind="$attrs" :show="show">
+  <Modal v-bind="$attrs" :show="show" :onClose="() => {show=false;reject()}">
     <template #default>
       <div class="title">{{ label }}</div>
       <view class="buttonRow">
