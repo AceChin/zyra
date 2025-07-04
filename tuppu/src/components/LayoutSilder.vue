@@ -99,7 +99,7 @@ defineExpose({ open });
     height: 100%;
     left: 0;
     top: 0;
-    background-color: rgba($color: #000000, $alpha: 0.4);
+    background-color: rgba($color: #000000, $alpha: 0.7);
   }
   .show {
     width: 100%;
@@ -115,6 +115,7 @@ defineExpose({ open });
     transition: left 0.5s;
     display: flex;
     flex-direction: column;
+    // box-shadow:0rem 0rem 1rem rgba(224,246,75,0.2);
 
     .top {
       display: flex;
