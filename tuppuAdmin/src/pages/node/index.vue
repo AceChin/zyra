@@ -7,6 +7,17 @@
       </div>
     </div>
 
+    <div class="operation-bar">
+      <div class="filter-section">
+      </div>
+      <div class="operation-buttons">
+        <el-button @click="initData">
+          <!-- <el-icon><Refresh /></el-icon> -->
+          查询
+        </el-button>
+      </div>
+    </div>
+
     <!-- 数据表格 -->
     <div class="table-container">
       <el-table
@@ -45,28 +56,36 @@
         </el-table-column>
       </el-table>
     </div>
-    <el-dialog v-model="dialogFormVisible" title="编辑节点" width="500">
+    <el-dialog v-model="dialogFormVisible" title="编辑节点" width="800">
       <el-form :model="form">
-        <el-form-item label="赠送等级" :label-width="140">
-          <el-input v-model="form.upgradeLevel" type="number" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="单用户最大购买数" :label-width="140">
-          <el-input v-model="form.maxPerUser" type="number" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="USDT收益比" :label-width="140">
-          <el-input v-model="form.usdtBonusRate" type="number" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="	额外团队收益比" :label-width="140">
-          <el-input v-model="form.extraTeamRate" type="number" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="内容" :label-width="140">
-          <el-input
-            v-model="form.content"
-            :rows="6"
-            type="textarea"
-            placeholder="请输入"
-          />
-        </el-form-item>
+        <el-tabs v-model="active" type="card">
+          <el-form-item label="赠送等级" :label-width="140">
+            <el-input v-model="form.upgradeLevel" type="number" autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="单用户最大购买数" :label-width="140">
+            <el-input v-model="form.maxPerUser" type="number" autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="USDT收益比" :label-width="140">
+            <el-input v-model="form.usdtBonusRate" type="number" autocomplete="off" />
+          </el-form-item>
+          <el-form-item label="	额外团队收益比" :label-width="140">
+            <el-input v-model="form.extraTeamRate" type="number" autocomplete="off" />
+          </el-form-item>
+          <el-tab-pane v-for="(item, idx) of form.translations" :label="languageEm[item.lang]" :name="idx">
+            <el-form-item label="节点名" :label-width="140">
+              <el-input v-model="item.name" autocomplete="off" />
+            </el-form-item>
+            
+            <el-form-item label="内容" :label-width="140">
+              <el-input
+                v-model="item.content"
+                :rows="12"
+                type="textarea"
+                placeholder="请输入"
+              />
+            </el-form-item>
+          </el-tab-pane>
+        </el-tabs>
 
       </el-form>
       <template #footer>
@@ -89,13 +108,17 @@ import { ElMessage } from 'element-plus'
 // 表格数据
 const tableData = ref([])
 const form = ref({} )
+const active = ref(0)
 const tableLoading = ref(false)
 const dialogFormVisible = ref(false)
+const languageEm = {
+  'en-US': '英文',
+  'zh-CN': '中文',
+}
 
 // 初始化数据
 const initData = async () => {
   tableLoading.value = true
-  
   try {
     const response = await nodeAPI.getNodeList()
     
@@ -120,6 +143,7 @@ const onModify = async () => {
   await nodeAPI.modifyNode({...form.value})
   dialogFormVisible.value = false
   ElMessage.success('修改成功')
+  initData()
 }
 
 onMounted(() => {
