@@ -62,6 +62,7 @@
   --van-toast-default-width: 150px;
   --van-radius-lg: 18px;
   --van-text-color: #ffffff;
+  --van-overlay-background:rgba(0, 0, 0, .8);
 }
 
 
