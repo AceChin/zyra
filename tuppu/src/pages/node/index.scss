@@ -1,0 +1,131 @@
+.page {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 5rem;
+
+  header {
+    padding-top: 0.6rem;
+    display: flex;
+    align-items: center;
+  }
+  .menu {
+    height: 1.8rem;
+    margin-right: 0.4rem;
+  }
+  .logo {
+    height: 1.6rem;
+  }
+  .navRight {
+    display: flex;
+    align-items: center;
+  }
+  .title {
+    color: #def34b;
+    margin-left: auto;
+    margin-right: 0.4rem;
+    font-weight: bold;
+  }
+
+  .connectBtn {
+    border-radius: 0.6rem;
+    height: 2rem;
+    width: 2rem;
+    background-color: #def34b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #171717;
+    font-size: 1rem;
+
+    .connectIcon {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+  main {
+
+    .mainTitle {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #E0F64B;
+      line-height: 1.8rem;
+      margin-top: 0.8rem;
+    }
+    .date {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #B8B8B8;
+      line-height: 1rem;
+      margin-top: 4px;
+    }
+
+    .tabs {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      overflow-x: auto;
+  
+      .button {
+        min-width: 6rem;
+        // max-width: 6rem;
+        margin-right: 10px;
+        height: 2.26rem;
+        font-weight: bold;
+      }
+    }
+
+    .nodeInfo {
+      background: #171717;
+      border-radius: var(--van-dialog-radius);
+      border: 2px solid #E0F64B;
+      padding: 1rem;
+
+      .infoTitle {
+        color: var(--van-primary-color);
+        font-size: 1rem;
+        font-weight: 600;
+        color: #E0F64B;
+        line-height: 1.4rem;
+      }
+
+      .content {
+        color: #B8B8B8;
+        font-size: 0.8rem;
+        line-height: 1.34rem;
+        margin-top: 0.6rem;
+        white-space: break-spaces;
+      }
+      .progress {
+        margin-top: 2.3rem;
+        background-color: #333333;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        position: relative;
+
+        .step {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          background-color: var(--van-primary-color);
+          height: 0.5rem;
+          border-radius: 0.5rem;
+        }
+      }
+
+
+      .button {
+        // width: 13.5rem;
+        height: 2.13rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0 auto;
+        margin-top: 2.3rem;
+        display: block;
+      }
+    }
+  }
+}

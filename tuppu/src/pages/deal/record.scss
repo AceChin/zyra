@@ -1,0 +1,63 @@
+.page {
+
+  header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    .button {
+      // width: 4.5rem;
+      height: 2.3rem;
+      margin-right: 0.5rem;
+    }
+    .filtrate {
+      max-width: 1.46rem;
+      height: 1.46rem;
+      margin-left: auto;
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      background: #000000;
+      border-radius: 8px;
+      width: 93vw;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+
+      .top {
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--van-primary-color);
+        line-height: 1.3rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .down {
+        display: flex;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #666666;
+        line-height: 1rem;
+        margin-top: 0.8rem;
+
+        p{
+          margin-right: 1rem;
+        }
+      }
+    }
+
+    .down {
+      .unit,.type, .price {
+        color: #B8B8B8;
+      }
+    }
+  }
+}

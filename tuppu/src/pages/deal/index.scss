@@ -1,0 +1,133 @@
+.page {
+  padding-bottom: 6rem;
+
+  .leftNav {
+    color: var(--van-primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .rightNav {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+      text-align: center;
+      padding-bottom: 0.2rem;
+
+      .title {
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #848484;
+        line-height: 1rem;
+      }
+      .content {
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--van-primary-color);
+        line-height: 1rem;
+      }
+    }
+  }
+
+  .table {
+    background-color: #202020;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+
+    .row {
+      display: flex;
+      position: relative;
+      padding: 0.6rem 0.8rem 0.4rem 0.8rem;
+
+      >div {
+        flex: 1;
+        padding: 0 0.45rem;
+        font-weight: 600;
+        line-height: 1.1rem;
+        font-size: 0.8rem;
+      }
+    }
+    .origin {
+
+      >div {
+        color: #FF6600;
+      }
+    }
+    .primary {
+
+      >div {
+        color: var(--van-primary-color);
+      }
+    }
+    .firstRow {
+
+      >div {
+        color: #848484;
+      }
+    }
+  }
+  .nowTitle {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #B8B8B8;
+    line-height: 1rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.6rem 0;
+    padding-left: 1.2rem;
+
+    .price {
+      font-weight: 600;
+      font-size: 1.13rem;
+      color: var(--van-primary-color);
+      line-height: 1.2rem;
+      margin-left: 10px;
+    }
+  }
+
+  .tabs {
+    display: flex;
+    align-items: center;
+    padding: 1.26rem 1.1rem 0.66rem 1.46rem;
+
+    .button {
+      width: 6.5rem;
+      margin-right: 10px;
+      height: 2.26rem;
+    }
+
+    .historyBtn {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #848484;
+      margin-left: auto;
+    }
+  }
+
+  .sureBuy {
+    display: flex;
+    flex-direction: column;
+    background-color: #202020;
+    padding: 0.5rem 1.55rem 2rem 1.55rem;
+
+    .label {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #848484;
+      line-height: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+}

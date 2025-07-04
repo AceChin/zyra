@@ -1,0 +1,177 @@
+.page {
+  padding: 0 0.9rem 6rem 0.9rem;
+
+  header {
+
+    .record {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 0;
+    }
+    .recordBtn {
+      display: flex;
+      align-items: center;
+      color: #666666;
+      font-size: 1rem;
+      margin-left: 0.6rem;
+
+      .date {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    .acquisition {
+      background: #000000;
+      border-radius: var(--van-dialog-radius);
+      display: flex;
+      justify-content: space-between;
+      padding: 1.2rem;
+
+      .left {
+
+        .number {
+          color: var(--van-primary-color);
+          font-size: 2rem;
+        }
+      }
+      .right {
+
+        .circle {
+
+        }
+      }
+      .label {
+        font-size: 0.8rem;
+        color: #CCCCCC;
+        line-height: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
+  main {
+
+    .tabs {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+  
+      .button {
+        width: 6rem;
+        margin-right: 10px;
+        height: 2.26rem;
+        font-weight: bold;
+      }
+    }
+    .pledgeInfo {
+      padding: 0.8rem;
+      display: flex;
+      background-color: #333333;
+      align-items: center;
+      color: #CCCCCC;
+      justify-content: space-between;
+      border-radius: var(--van-dialog-radius);
+
+      .label {
+        color: #CCCCCC;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+      .amount {
+        color: var(--van-primary-color);
+      }
+
+      .button {
+        height: 1.9rem;
+      }
+    }
+    .content {
+      background-color: #202020;
+      border-radius: var(--van-dialog-radius);
+      padding: 0.7rem 0.7rem 0 0.7rem;
+      margin-top: 0.8rem; 
+      overflow: hidden;
+
+      .title {
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #CCCCCC;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin-top: 0.4rem;
+        
+        span {
+          color: #666666;
+          font-weight: 600;
+        };
+      }
+      .buttonRow {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0.4rem;
+
+        .button {
+          height: 1.9rem;
+        }
+      }
+
+      .canHide {
+        transition: height 0.3s;
+        overflow: hidden;
+      }
+
+      .expand {
+        width: 40vw;
+        margin: 0 auto;
+        padding-bottom: 0.7rem;
+
+        .expandDownArrow {
+          width: 0.6rem;
+          margin: 0 auto;
+          display: block;
+        }
+        .spin {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
+}
+
+.popupContent {
+  position: relative;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--van-primary-color);
+    line-height: 1.6rem;
+    margin-top: 1.7rem;
+  }
+  .tips {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #E0F64B;
+    line-height: 1.06rem;
+    margin-bottom: 1rem;
+  }
+  .row {
+    display: flex;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #B8B8B8;
+    margin-bottom: 0.6rem;
+    justify-content: space-between;
+  }
+  .button {
+    width: 57vw;
+    margin: 0 auto;
+    margin-top: 1.33rem;
+    display: block;
+  }
+}
