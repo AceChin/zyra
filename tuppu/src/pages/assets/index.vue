@@ -123,9 +123,6 @@ onMounted(async () => {
 const onSureRecharge = async () => {
   try {
     loading.value = true
-    setTimeout(() => {
-      loading.value = false
-    }, 3000)
     if(!rechargeValue.value)
       return
     if(!web3Store.web3Info)
@@ -144,7 +141,6 @@ const onSureRecharge = async () => {
     rechargeValue.value = ''
     loading.value = false
   } catch(e) {
-    console.log(111111)
     console.log(e)
     loading.value = false
   }

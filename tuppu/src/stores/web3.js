@@ -202,6 +202,9 @@ export const useWeb3Store = defineStore("web3", () => {
   
         // 调用转账
         const tx = contract.methods.transfer(address, amountBN).send({ from: account.value })
+        tx.catch(e => {
+          reject(new Error(e))
+        })
         tx.on("transactionHash",async (hash) => {
             console.log("交易hash:", hash);
             reslove(hash)
