@@ -244,6 +244,10 @@ export const useWeb3Store = defineStore("web3", () => {
   const fetchInvitationDirect = async (data) => {
     return await get('/api/v1/invitation/direct', data);
   }
+  // 获取邀请人列表
+  const fetchLevelInfo = async () => {
+    return await get('/api/v1/level/info');
+  }
 
   const setInviteCode = (v) => {
     inviteCode.value = v
@@ -289,6 +293,7 @@ export const useWeb3Store = defineStore("web3", () => {
     fetchInvitationInfo,
     logout,
     changeChain,
-    formatAddress
+    formatAddress,
+    fetchLevelInfo
   };
 });

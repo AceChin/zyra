@@ -39,9 +39,9 @@
       </div>
 
       <div v-if="nodeContent.id" class="nodeInfo">
-          <div class="infoTitle">{{ $t('button.realTimePrice') }}
+          <div class="infoTitle">{{ $t('home.realTimePrice') }}
             <span v-if="nodeContent.stock" style="color: #B8B8B8">
-              （{{ nodeContent.stock }}/{{ nodeContent.total }}）
+              （{{ nodeContent.total - nodeContent.stock }}/{{ nodeContent.total }}）
             </span>
           </div>
 
@@ -78,6 +78,7 @@ import Confirm from '../../components/Confirm.vue'
 import Language from '../../components/Language.vue';
 import { useWeb3Store, useNodeStore, useLoadingStore } from '@/stores'
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant';
 const { t : $t, locale } = useI18n()
 
 const defineButton = {
@@ -100,6 +101,7 @@ const silder = ref(null)
 const confirm = ref(null)
 const status = ref('public')
 const nodeContent = ref('')
+const id = ref('')
 
 const nodeInfo = computed(() => nodeStore.nodeInfo)
 
@@ -122,10 +124,10 @@ const changeStatus = (v) => {
   status.value = v
   nodeContent.value = nodeInfo.value.items.find(i => i.id == v)
 }
-const init = async () => {
+const init = async (id) => {
   await nodeStore.fetchNodeTypes()
   await nodeStore.fetchNodeDetail()
-  changeStatus(nodeStore.nodeList[0]?.id)
+  changeStatus(id || nodeStore.nodeList[0]?.id)
 }
 
 const openMenu = () => {
@@ -136,6 +138,8 @@ const buyNode = async () => {
   await confirm.value.open($t('tips.sureBuy', { name: nodeContent.value.name }))
   try {
     await nodeStore.buyNode({ nodeSaleItemId: status.value })
+    showToast($t('tips.buySuccess'))
+    web3Store.fetchUserInfo()
   } catch(e) {
     if(e.code == 400) {
       await confirm.value.open('余额不足，是否需要充值')
@@ -144,7 +148,7 @@ const buyNode = async () => {
     }
     console.log(e.code)
   }
-  init()
+  init(nodeContent.value.id)
 }
 
 onMounted(async () => {

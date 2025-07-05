@@ -14,7 +14,7 @@
         <div class="top">
           <img class="icon" src="../../assets/images/invitedIcon.png" alt="">
           {{ info.levelName }}
-          <div class="toUp" @click="() => toPage('/invited/update')">
+          <div class="toUp" @click="toPage">
             {{ $t('home.toUpgrade') }} <img src="../../assets/images/rightArrow-e0f.svg" alt="">
           </div>
         </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="row">
           <p class="key">{{ $t('home.invitationTime') }}</p>
-          <p class="value">{{ info.createdAt }}</p>
+          <p class="value">{{ formatTime(info.createdAt) }}</p>
         </div>
 
       </div>
@@ -62,8 +62,8 @@
         @load="() => fetchList(false)"
       >
         <div v-for="item of list" :key="item.ethAddress" class="row">
-          <p class="value">{{ item.ethAddress }}</p>
-          <p class="value">{{ item.createdAt }}</p>
+          <p class="value">{{ web3Store.formatAddress(item.ethAddress) }}</p>
+          <p class="value">{{ formatTime(item.createdAt) }}</p>
         </div>
     
     </van-list>
@@ -116,15 +116,29 @@ const fetchList = async () => {
 const onCopy = async () => {
   try {
     await navigator.clipboard.writeText(url.value)
-    showToast('复制成功')
+    showToast($t('tips.copySuccess'))
   } catch (err) {
     alert('复制失败: ' + err)
   }
 }
 
+const formatTime = (timestamp) => {
+  if (!timestamp) return ''
+  const date = new Date(timestamp * 1000)
+  return date.toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+}
+
 init()
 
 const toPage = (path) => {
+  showToast($t('tips.notOpen'))
+  return
   router.push({ path });
 }
 

@@ -7,16 +7,21 @@
         <div v-if="$attrs.token == 'USDT'" class="linkBtn" @click="onWithdraw">{{ $t('button.withdraw') }}</div>
         <!-- <div class="linkBtn" @click="onTransfer">转账</div> -->
         <!-- <div class="linkBtn" @click="flashExchange">闪兑</div> -->
-        <van-button v-if="$attrs.token == 'USDT'" class="button" type="primary" round @click="onRecharge"
+        <van-button v-if="$attrs.token == 'USDT'" :loading="loading" class="button" type="primary" round @click="onRecharge"
           >{{ $t('button.charge') }}</van-button
         >
       </div>
     </div>
     <div class="bottom">
-      <span class="label">{{ $t('home.canUse') }}</span>
-      <span class="amount">{{ $attrs.balance }}</span>
-      <span class="label">{{ $t('home.cantUse') }}</span>
-      <span class="amount">{{ $attrs.frozen }}</span>
+      <div class="bottomItem">
+        <span class="label">{{ $t('home.canUse') }}</span>
+        <span class="amount">{{ $attrs.balance }}</span>
+      </div>
+      <div class="bottomItem">
+        <span class="label">{{ $t('home.cantUse') }}</span>
+        <span class="amount">{{ $attrs.frozen }}</span>
+
+      </div>
     </div>
   </div>
 </template>
@@ -26,12 +31,12 @@ import TPUAicon from '@/assets/images/TPUA.png'
 import USDTicon from '@/assets/images/USDT.png'
 import { useI18n } from 'vue-i18n'
 const { t : $t } = useI18n()
+
 const icons = {
   TPU: TPUicon,
   TPUA: TPUAicon,
   USDT: USDTicon,
 }
-
 
 const props = defineProps({
   info: {
@@ -39,6 +44,10 @@ const props = defineProps({
     default: () => {
       return {};
     },
+  },
+  loading: {
+    type: Boolean,
+    default: false
   },
   onRecharge: {
     type: Function,
@@ -100,15 +109,28 @@ const props = defineProps({
           font-weight: 400;
           font-size: 0.8rem;
           line-height: 1.2rem;
+          display: flex;
+          flex-wrap: wrap;
 
-          .label {
-            color: #666666;
-            margin-right: 1rem;
+          .bottomItem {
+            flex: 1;
+            // min-height: 50%;
+            display: flex;
+            flex-direction: column;
+            // text-align: center;
+
+            .label {
+              color: #666666;
+              white-space: nowrap;
+              // margin-right: 1rem;
+            }
+            .amount {
+              color: #FFFFFF;
+              white-space: nowrap;
+              // margin-right: 4rem;
+            }
           }
-          .amount {
-            color: #FFFFFF;
-            margin-right: 4rem;
-          }
+
         }
       }
 

@@ -12,6 +12,8 @@ export default {
     checkAddress: '您的登录地址即是接收地址，请仔细核对',
     minNumber: "最少 {number}",
     tooSmall: "小于最小提现数",
+    buySuccess: "购买成功",
+    copySuccess: "复制成功",
     sureBuy: '确定要购买{name}吗',
     buyNodeTips: "燃烧 {price} USDT 兑换（{bought} / {maxPerUser}）"
   },
@@ -50,6 +52,7 @@ export default {
     deal: '交易',
     my: '我的',
     toUpgrade: '去升级',
+    upgrade: '去升级',
     totalInvite: '总邀请',
     directInvite: '直接邀请',
     inviteLink: '邀请链接',

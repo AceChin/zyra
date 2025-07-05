@@ -12,6 +12,8 @@ export default {
     checkAddress: 'Your login address is the receiving address, please check carefully',
     minNumber: "At least {number}",
     tooSmall: "Less than the minimum amount",
+    buySuccess: "Buy Success",
+    copySuccess: "Copy Success",
     sureBuy: 'Are you sure to buy {name}?',
     buyNodeTips: "Use {price} USDT to buy（{bought} / {maxPerUser}）"
   },
@@ -50,6 +52,7 @@ export default {
     deal: 'Trade',
     my: 'Mine',
     toUpgrade: 'Upgrade',
+    upgrade: 'Upgrade',
     totalInvite: 'Total Invite',
     directInvite: 'Direct Invite',
     inviteLink: 'Invite Link',
