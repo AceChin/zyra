@@ -8,7 +8,7 @@
           type="primary"
           round
           @click="() => {show=false;reslove()}"
-          >确认</van-button
+          >{{ $t('button.sure') }}</van-button
         >
         <van-button
           class="button"
@@ -16,7 +16,7 @@
           plain
           round
           @click="() => {show=false;reject()}"
-          >取消</van-button
+          >{{ $t('button.cancel') }}</van-button
         >
       </view>
     </template>
@@ -25,6 +25,8 @@
 <script setup>
 import Modal from "./Modal.vue";
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t : $t } = useI18n()
 
 const label = ref('')
 const reslove = ref()

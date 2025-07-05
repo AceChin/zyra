@@ -191,32 +191,30 @@ export const useWeb3Store = defineStore("web3", () => {
   const transferU = async (v, address) => {
     return new Promise(async (reslove, reject) => {
 
-      const contract = await new web3Info.value.eth.Contract(ERC20_ABI, contractAddress);
-      // 代币精度
-      const decimals = await contract.methods.decimals().call();
+
+        const contract = await new web3Info.value.eth.Contract(ERC20_ABI, contractAddress);
+        // 代币精度
+        const decimals = await contract.methods.decimals().call();
+    
+        const amountInt = Math.floor(v * (10 ** Number(decimals)));
+    
+        const amountBN = utils.toBigInt(amountInt);
   
-      const amountInt = Math.floor(v * (10 ** Number(decimals)));
-  
-      console.log(utils)
-  
-      const amountBN = utils.toBigInt(amountInt);
-  
-  
-      // 调用转账
-      contract.methods.transfer(address, amountBN).send({ from: account.value })
-        .on("transactionHash",async (hash) => {
-          console.log("交易hash:", hash);
-          reslove(hash)
-        })
-        .on("receipt", (receipt) => {
-          console.log("完成:", receipt);
-          // reslove(receipt.transactionHash)
-          // return hash
-        })
-        .on("error", (err) => {
-          console.error("出错:", err);
-          reject(err)
-        });
+        // 调用转账
+        const tx = contract.methods.transfer(address, amountBN).send({ from: account.value })
+        tx.on("transactionHash",async (hash) => {
+            console.log("交易hash:", hash);
+            reslove(hash)
+          })
+          .on("receipt", (receipt) => {
+            console.log("完成:", receipt);
+            // reslove(receipt.transactionHash)
+            // return hash
+          })
+          .on("error", (err) => {
+            console.error("出错:", err.code);
+            reject()
+          });
 
     })
   }

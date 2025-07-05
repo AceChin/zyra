@@ -68,6 +68,7 @@ export default {
     deal: '去交易',
     linkWallet: '链接钱包',
     sure: '确认',
+    cancel: '取消',
     all: '全部',
     mine: '挖矿',
     charge: '充值',

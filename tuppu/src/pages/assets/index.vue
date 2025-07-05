@@ -63,7 +63,7 @@ import AssetsItem from './components/AssetsItem.vue'
 import Popup from "../../components/Popup.vue";
 import TuppuInput from '../../components/TuppuInput.vue';
 import Confirm from '../../components/Confirm.vue';
-import { useAssetsStore, useWeb3Store } from '@/stores'
+import { useAssetsStore, useWeb3Store, useLoadingStore } from '@/stores'
 import { showToast } from "vant";
 import { useI18n } from 'vue-i18n'
 const { t : $t } = useI18n()
@@ -71,6 +71,7 @@ const { t : $t } = useI18n()
 const router = useRouter();
 const route = useRoute();
 const assetsStore = useAssetsStore()
+const loadingStore = useLoadingStore()
 const web3Store = useWeb3Store()
 
 const rechargeVisible = ref(false)
@@ -121,9 +122,12 @@ onMounted(async () => {
 
 const onSureRecharge = async () => {
   try {
+    loading.value = true
+    setTimeout(() => {
+      loading.value = false
+    }, 3000)
     if(!rechargeValue.value)
       return
-    loading.value = true
     if(!web3Store.web3Info)
       await web3Store.connectImTokenWallet()
     const isTrueChain = await web3Store.fetchChainId()
@@ -132,15 +136,16 @@ const onSureRecharge = async () => {
       await web3Store.changeChain()
     }
     const { address } = await assetsStore.fetchRechargeAddress()
-    // alert(address)
     const txHash = await web3Store.transferU(rechargeValue.value, address)
-    // alert(txHash)
     await assetsStore.confirmCharge({ txHash })
     showToast($t('tips.chargeSuccess'))
     rechargeVisible.value = false
     assetsStore.fetchAssetsAccounts()
     rechargeValue.value = ''
+    loading.value = false
   } catch(e) {
+    console.log(111111)
+    console.log(e)
     loading.value = false
   }
 }

@@ -68,6 +68,7 @@ export default {
     deal: 'Trade',
     linkWallet: 'Connect Wallet',
     sure: 'Sure',
+    cancel: 'Cancel',
     all: 'All',
     mine: 'Mine',
     charge: 'Deposit',
