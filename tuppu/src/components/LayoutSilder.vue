@@ -6,7 +6,7 @@
         <img class="avatar" src="@/assets/images/head.png" alt="" />
         <div class="userInfo">
           <p class="address">{{ web3Store.accountMask || '' }}</p>
-          <p class="name">{{ web3Store.userInfo?.levelName }} · {{ web3Store.userInfo?.nodeName }}</p>
+          <p class="name">{{ web3Store.userInfo?.levelName }} {{ web3Store.userInfo?.nodeName?"· "+web3Store.userInfo?.nodeName:""      }}</p>
         </div>
         <img @click="close" class="close" src="@/assets/images/closeBtn.png" />
       </div>

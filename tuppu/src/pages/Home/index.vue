@@ -53,16 +53,16 @@
         </div>
       </div>
 
-      <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+<!--       <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
-      </van-swipe>
+      </van-swipe> -->
       
       <div class="realTimeData">
         <div class="left">
-          <div class="title">TPU/USDT{{ $t('home.realTimePrice') }}</div>
+          <div class="title">TPU/USDT {{ $t('home.realTimePrice') }}</div>
           <div class="dealInfo">
             <p class="price">$--</p>&nbsp;<p class="date">24H</p>&nbsp;--
           </div>
