@@ -184,7 +184,7 @@ const openMenu = () => {
 
 const sureSell = async () => {
   console.log(1)
-  await confirm.value.open('检测到您当前的链不是BSC/BEP20，是否切换为BSC/BEP20？')
+  // await confirm.value.open($t('tips.changeNetWork'))
   console.log(2)
 }
 

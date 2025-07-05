@@ -128,7 +128,7 @@ const onSureRecharge = async () => {
       await web3Store.connectImTokenWallet()
     const isTrueChain = await web3Store.fetchChainId()
     if(!isTrueChain) {
-      await confirm.value.open('检测到您当前的链不是BSC/BEP20，是否切换为BSC/BEP20？')
+      await confirm.value.open($t('tips.changeNetWork'))
       await web3Store.changeChain()
     }
     const { address } = await assetsStore.fetchRechargeAddress()

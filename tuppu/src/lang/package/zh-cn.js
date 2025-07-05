@@ -15,6 +15,9 @@ export default {
     buySuccess: "购买成功",
     copySuccess: "复制成功",
     sureBuy: '确定要购买{name}吗',
+    insufficientBalance: '余额不足，是否需要充值',
+    changeNetWork: '检测到您当前的链不是BSC/BEP20，是否切换为BSC/BEP20？',
+    sureExit: '确定要退出吗',
     buyNodeTips: "燃烧 {price} USDT 兑换（{bought} / {maxPerUser}）"
   },
   home: {

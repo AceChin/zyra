@@ -15,6 +15,9 @@ export default {
     buySuccess: "Buy Success",
     copySuccess: "Copy Success",
     sureBuy: 'Are you sure to buy {name}?',
+    insufficientBalance: 'The balance is insufficient. Do you need to recharge',
+    changeNetWork: 'It has been detected that your current chain is not BSC/BEP20. Do you want to switch to BSC/BEP20?',
+    sureExit: 'Are you sure you want to quit',
     buyNodeTips: "Use {price} USDT to buy（{bought} / {maxPerUser}）"
   },
   home: {

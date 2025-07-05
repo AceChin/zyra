@@ -29,6 +29,15 @@ export default defineConfig({
       resolvers: [VantResolver()],
     }),
   ],
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: ['log','info','warn','error'],
+        drop_debugger: true,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

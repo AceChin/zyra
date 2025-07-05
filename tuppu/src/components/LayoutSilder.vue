@@ -72,7 +72,7 @@ const close = () => {
 }
 
 const logout = async () => {
-  await confirm.value.open('确定要退出吗')
+  await confirm.value.open($t('tips.sureExit'))
   await web3Store.logout()
   visible.value = false
   router.replace('/')
