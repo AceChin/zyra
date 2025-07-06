@@ -76,7 +76,7 @@
             <p class="type">{{ typeEm[item.type] }}</p>
             <p class="date">{{ item.createdTime }}</p>
           </div>
-          <div class="price">{{ item.direction == 'in' ? '+' : '' }}{{ item.balance }}</div>
+          <div class="price">{{ item.direction == 'in' ? '+' : '' }}{{ item.amount }}</div>
         </div>
       </van-list>
     </main>
