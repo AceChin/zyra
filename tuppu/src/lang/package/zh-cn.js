@@ -63,6 +63,7 @@ export default {
     invitationTime: '被邀请时间',
     chinese: '中文',
     english: '英文',
+    plsInvited: '请先输入邀请码'
   },
   button: {
     deal: '去交易',

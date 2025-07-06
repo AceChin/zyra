@@ -107,7 +107,9 @@
     </main>
     <Tabbar v-if="web3Store.accountMask" nowUrl="/" />
     <LayoutSilder ref="silder" />
+
     <Language :visible="languageVisible" :onClose="() => languageVisible = false" />
+    <InvitedModal :visible="invitedVisible" :onClose="() => invitedVisible = false" :cb="connect" :loading="loginLoading" />
   </div>
 </template>
 <script setup>
@@ -115,6 +117,7 @@ import { useRouter } from "vue-router";
 import { ref } from 'vue'
 import Tabbar from '../../components/Tabbar.vue';
 import Language from '../../components/Language.vue';
+import InvitedModal from '../../components/InvitedModal.vue';
 import { useWeb3Store, useAssetsStore, useLoadingStore } from '@/stores'
 import TPUicon from '@/assets/images/TPU.png'
 import TPUAicon from '@/assets/images/TPUA.png'
@@ -137,14 +140,26 @@ const assetsStore = useAssetsStore()
 const loadingStore = useLoadingStore()
 const silder = ref(null)
 const languageVisible = ref(false)
+const invitedVisible = ref(false)
+const loginLoading = ref(false)
 
 const connect = async () => {
-  await web3Store.connectImTokenWallet()
-  web3Store.fetchBalance()
-  await web3Store.login()
-  web3Store.fetchUserInfo()
-  assetsStore.fetchAssetsAccounts()
-  router.push('/node')
+  try {
+    loginLoading.value = true
+    await web3Store.connectImTokenWallet()
+    web3Store.fetchBalance()
+    await web3Store.login()
+    web3Store.fetchUserInfo()
+    assetsStore.fetchAssetsAccounts()
+    invitedVisible.value = false
+    loginLoading.value = false
+    router.push('/node')
+  } catch (e) {
+    if(e.code == 404) {
+      invitedVisible.value = true
+    }
+    loginLoading.value = false
+  }
 }
 
 const openMenu = () => {

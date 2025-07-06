@@ -181,9 +181,9 @@ export const useWeb3Store = defineStore("web3", () => {
       localStorage.setItem('refreshToken', token.refreshToken);
   
     } catch (error) {
-      console.error('登录失败:', error);
-      alert('登录失败');
-      throw new Error('LOGIN ERROR')
+      console.error('登录失败:', );
+      // alert('登录失败');
+      throw error
     }
   }
 

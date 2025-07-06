@@ -61,8 +61,9 @@ export default {
     inviteLink: 'Invite Link',
     myInviter: 'My Inviter',
     invitationTime: 'Invited time',
-    chinese: '中文',
+    chinese: 'Chinese',
     english: 'English',
+    plsInvited: 'Please enter the invitation code first',
   },
   button: {
     deal: 'Trade',
