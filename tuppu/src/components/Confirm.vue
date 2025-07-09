@@ -1,16 +1,17 @@
 <template>
-  <Modal v-bind="$attrs" :show="show" :onClose="() => {show=false;reject()}">
+  <Modal v-bind="$attrs" :hideClose="oneButton" :show="show" :onClose="() => {show=false;reject()}">
     <template #default>
       <div class="title">{{ label }}</div>
       <view class="buttonRow">
         <van-button
-          class="button"
+          :class="['button', oneButton ? 'oneButton' : '']"
           type="primary"
           round
           @click="() => {show=false;reslove()}"
           >{{ $t('button.sure') }}</van-button
         >
         <van-button
+          v-if="!oneButton"
           class="button"
           type="primary"
           plain
@@ -27,6 +28,13 @@ import Modal from "./Modal.vue";
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t : $t } = useI18n()
+
+const props = defineProps({
+  oneButton: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const label = ref('')
 const reslove = ref()
@@ -60,6 +68,9 @@ defineExpose({ open });
   .button {
     width: 6.4rem;
     height: 2.33rem;
+  }
+  .oneButton {
+    flex: 1;
   }
 }
 </style>

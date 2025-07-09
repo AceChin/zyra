@@ -106,9 +106,9 @@
       <p v-if="web3Store.inviteCode" class="invitedCode">{{ $t('home.inviteCode') }}：{{ web3Store.inviteCode }}</p>
     </main>
     <Tabbar v-if="web3Store.accountMask" nowUrl="/" />
-    <LayoutSilder ref="silder" />
+    <LayoutSilder ref="silder" :onChangeLanguage="changeLangue" />
 
-    <Language :visible="languageVisible" :onClose="() => languageVisible = false" />
+    <Language :visible="languageVisible" :onClose="() => languageVisible = false" :onOk="init" />
     <InvitedModal :visible="invitedVisible" :onClose="() => invitedVisible = false" :cb="connect" :loading="loginLoading" />
   </div>
 </template>

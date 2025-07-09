@@ -15,8 +15,11 @@ import enUS from 'vant/es/locale/lang/en-US';
 import zhCN from 'vant/es/locale/lang/zh-CN';
 import { useI18n } from 'vue-i18n'
 import { Locale } from 'vant';
+import { useWeb3Store } from "@/stores";
 
 const { t : $t, locale } = useI18n()
+
+const web3Store = useWeb3Store();
 
 const columns = [
   { text: $t('home.chinese'), value: 'zh-CN' },
@@ -48,6 +51,7 @@ const onConfirm = (v) => {
   locale.value = v.selectedValues[0]
   localStorage.setItem('language', v.selectedValues[0])
   Locale.use(v.selectedValues[0], vantLanguage[v.selectedValues[0]]);
+  web3Store.fetchUserInfo()
   props.onClose()
   props.onOk()
 }

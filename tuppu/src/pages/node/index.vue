@@ -23,7 +23,7 @@
       </template>
     </van-nav-bar>
     <main>
-      <div class="mainTitle">{{ nodeInfo.titleZh || '' }}</div>
+      <div class="mainTitle">{{ nodeInfo.title || '' }}</div>
       <div class="date">{{ nodeStore.dateRang() }}</div>
 
       <div class="tabs">
@@ -39,7 +39,7 @@
       </div>
 
       <div v-if="nodeContent.id" class="nodeInfo">
-          <div class="infoTitle">{{ $t('home.realTimePrice') }}
+          <div class="infoTitle">{{ nodeContent.name }}
             <span v-if="nodeContent.stock" style="color: #B8B8B8">
               （{{ nodeContent.total - nodeContent.stock }}/{{ nodeContent.total }}）
             </span>
@@ -56,6 +56,7 @@
             class="button"
             type="primary"
             :loading="loadingStore['node/buyNode']"
+            :disabled="nodeContent.maxPerUser <= nodeContent.bought"
             round
             @click="buyNode">
             {{ $t('tips.buyNodeTips', {price: nodeContent.price || 0,bought: nodeContent.bought || 0, maxPerUser: nodeContent.maxPerUser || 0}) }}
@@ -65,7 +66,7 @@
 
     </main>
     <Tabbar nowUrl="" />
-    <LayoutSilder ref="silder" />
+    <LayoutSilder ref="silder" :onChangeLanguage="changeLangue" />
     <Confirm ref="confirm" />
     <Language :visible="languageVisible" :onClose="() => languageVisible = false" :onOk="init" />
   </div>

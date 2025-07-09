@@ -2,7 +2,7 @@
   <van-dialog v-bind="$attrs">
     <template #default>
       <div class="modalContent">
-        <img @click="$attrs.onClose" class="close" src="@/assets/images/closeBtn.png" />
+        <img v-if="!$attrs.hideClose" @click="$attrs.onClose" class="close" src="@/assets/images/closeBtn.png" />
         <slot />
       </div>
     </template>

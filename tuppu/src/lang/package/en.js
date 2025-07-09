@@ -5,7 +5,7 @@ export default {
     notOpen: 'Coming Soon',
     plsInput: 'Please enter the recharge amount',
     chargeSuccess: 'Deposit Success',
-    withdrawSuccess: 'Withdraw Success',
+    withdrawSuccess: 'Your submission has been successful. Please wait patiently for the review to be credited',
     notMore: 'No More',
     completeTime: 'Please select the complete time',
     completeSureTime: 'Please choose the correct time',
@@ -61,7 +61,7 @@ export default {
     inviteLink: 'Invite Link',
     myInviter: 'My Inviter',
     invitationTime: 'Invited time',
-    chinese: 'Chinese',
+    chinese: '中文',
     english: 'English',
     plsInvited: 'Please enter the invitation code first',
   },
@@ -85,4 +85,15 @@ export default {
     copy: 'Copy',
     deduct: 'Deduct'
   },
+  status: {
+    pending: "Pending review",
+    approved: "Passed",
+    rejected: "Rejected",
+    processing: "Processing on the chain",
+    done: "Completed",
+    failed: "Failure",
+    confirmed: "Confirmed",
+    closed: "Closed",
+    unknown: "Unknown",
+  }
 };

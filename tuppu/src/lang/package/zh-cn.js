@@ -5,7 +5,7 @@ export default {
     notOpen: '暂未开放',
     plsInput: '请输入充值金额',
     chargeSuccess: '充值成功',
-    withdrawSuccess: '提现成功',
+    withdrawSuccess: '提交成功，请耐心等待审核到账',
     notMore: '没有更多了',
     completeTime: '请选择完整的时间',
     completeSureTime: '请选择正确的时间',
@@ -62,7 +62,7 @@ export default {
     myInviter: '我的邀请人',
     invitationTime: '被邀请时间',
     chinese: '中文',
-    english: '英文',
+    english: 'Englist',
     plsInvited: '请先输入邀请码'
   },
   button: {
@@ -84,7 +84,6 @@ export default {
     unfreeze: '解冻',
     copy: '复制',
     deduct: '消费、订单扣减',
-    mine: '挖矿',
   },
   status: {
     pending: "待审核",
@@ -92,6 +91,9 @@ export default {
     rejected: "已拒绝",
     processing: "链上处理中",
     done: "完成",
-    failed: "失败"
+    failed: "失败",
+    confirmed: "已确认",
+    closed: "已关闭",
+    unknown: "未知",
   }
 };

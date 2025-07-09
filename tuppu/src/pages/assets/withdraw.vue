@@ -23,7 +23,7 @@
       :max="Number(total)"
       suffix="USDT" />
     <div class="row">
-      <div class="grayLabel">{{ $t('button.fee') }} ：{{ (rechargeValue * walletConfig.withdrawFee) || 0 }}U</div>
+      <div class="grayLabel">{{ $t('button.fee') }} ：{{ walletConfig.withdrawFee || 0 }}U</div>
       <div class="grayLabel">{{ $t('home.canUse') }}：{{ total }} USDT</div>
     </div>
     <div class="grayLabel" style="margin-top: 1.3rem">{{ $t('home.tips') }}：</div>
@@ -35,12 +35,14 @@
       :disabled="rechargeValue < Number(walletConfig.withdrawMin)"
       :loading="loadingStore['assets/walletWithdraw']"
       @click="sureWithdraw">{{ $t('button.sure') }}</van-button>
+    <Confirm ref="confirm" :oneButton="true" />
   </div>
 </template>
 <script setup>
 import { ref, computed } from "vue";
 import { useAssetsStore, useLoadingStore, useWeb3Store } from '@/stores'
 import TuppuInput from '../../components/TuppuInput.vue';
+import Confirm from '../../components/Confirm.vue'
 import { showToast } from "vant";
 import { useI18n } from 'vue-i18n'
 const { t : $t } = useI18n()
@@ -51,6 +53,7 @@ const loadingStore = useLoadingStore()
 assetsStore.fetchWalletConfigs()
 
 const rechargeValue = ref()
+const confirm = ref(null)
 
 
 const walletConfig = computed(() => assetsStore.walletConfig || {})
@@ -70,9 +73,10 @@ const sureWithdraw = async () => {
     token: 'USDT',
     amount: rechargeValue.value || 0
   })
-  showToast($t('tips.withdrawSuccess'))
+  // showToast($t('tips.withdrawSuccess'))
+  await confirm.value.open($t('tips.withdrawSuccess'))
   web3Store.fetchUserInfo()
-  history.back()
+  // history.back()
 }
 
 const onClickLeft = () => history.back();

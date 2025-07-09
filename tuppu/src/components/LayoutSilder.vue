@@ -35,7 +35,7 @@
         @click="logout">{{ $t('home.exit') }}</van-button>
     </div>
     <Confirm ref="confirm" />
-    <Language :visible="languageVisible" :onClose="() => languageVisible = false" />
+    <!-- <Language :visible="languageVisible" :onClose="() => languageVisible = false" /> -->
   </div>
 </template>
 <style lang="scss" scoped>
@@ -47,7 +47,14 @@ import { useRouter } from "vue-router";
 import { useI18n } from 'vue-i18n'
 import { useWeb3Store } from '@/stores'
 import Confirm from './Confirm.vue'
-import Language from './Language.vue';
+// import Language from './Language.vue';
+
+const props = defineProps({
+  onChangeLanguage: {
+    type: Function,
+    default: () => {}
+  }
+})
 
 // const { locale } = useI18n()
 const { locale, t : $t } = useI18n()
@@ -56,7 +63,7 @@ const { locale, t : $t } = useI18n()
 const router = useRouter();
 const web3Store = useWeb3Store()
 const visible = ref(false);
-const languageVisible = ref(false);
+// const languageVisible = ref(false);
 const confirm = ref(null)
 
 const open = () => {
@@ -64,7 +71,8 @@ const open = () => {
 };
 
 const changeLangue = () => {
-  languageVisible.value = true
+  // languageVisible.value = true
+  props.onChangeLanguage()
 }
 
 const close = () => {
