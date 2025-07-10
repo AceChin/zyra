@@ -63,7 +63,7 @@ export default {
     invitationTime: 'Invited time',
     chinese: '中文',
     english: 'English',
-    plsInvited: 'Please enter the invitation code first',
+    plsInvited: 'Please enter the invitation code',
   },
   button: {
     deal: 'Trade',
@@ -86,10 +86,10 @@ export default {
     deduct: 'Deduct'
   },
   status: {
-    pending: "Pending review",
+    pending: "Pending",
     approved: "Passed",
     rejected: "Rejected",
-    processing: "Processing on the chain",
+    processing: "Processing",
     done: "Completed",
     failed: "Failure",
     confirmed: "Confirmed",
