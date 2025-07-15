@@ -132,6 +132,7 @@ const onSureRecharge = async () => {
       await confirm.value.open($t('tips.changeNetWork'))
       await web3Store.changeChain()
     }
+    await web3Store.checkAddress()
     const { address } = await assetsStore.fetchRechargeAddress()
     const txHash = await web3Store.transferU(rechargeValue.value, address)
     await assetsStore.confirmCharge({ txHash })

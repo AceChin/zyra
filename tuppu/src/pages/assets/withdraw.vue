@@ -69,6 +69,7 @@ const sureWithdraw = async () => {
     showToast($t('tips.tooSmall'))
     return
   }
+  await web3Store.checkAddress()
   await assetsStore.walletWithdraw({
     token: 'USDT',
     amount: rechargeValue.value || 0

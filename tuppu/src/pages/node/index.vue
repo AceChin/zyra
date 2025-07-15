@@ -24,7 +24,7 @@
     </van-nav-bar>
     <main>
       <div class="mainTitle">{{ nodeInfo.title || '' }}</div>
-      <div class="date">{{ nodeStore.dateRang() }}</div>
+      <!-- <div class="date">{{ nodeStore.dateRang() }}</div> -->
 
       <div class="tabs">
         <van-button

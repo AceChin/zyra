@@ -3,6 +3,9 @@ import { defineStore } from "pinia";
 import Web3, { utils } from 'web3';
 import { get, post } from '@/utils/request'
 import { ERC20_ABI, contractAddress } from '@/utils/web3'
+import { showToast } from "vant";
+import { translate } from "../lang";
+
 
 class Web3Signer {
   constructor(web3, account) {
@@ -177,8 +180,8 @@ export const useWeb3Store = defineStore("web3", () => {
       });
   
       // 4. 保存 token
-      localStorage.setItem('accessToken', token.accessToken);
-      localStorage.setItem('refreshToken', token.refreshToken);
+      sessionStorage.setItem('accessToken', token.accessToken);
+      sessionStorage.setItem('refreshToken', token.refreshToken);
   
     } catch (error) {
       console.error('登录失败:', );
@@ -191,18 +194,25 @@ export const useWeb3Store = defineStore("web3", () => {
   const transferU = async (v, address) => {
     return new Promise(async (reslove, reject) => {
 
+      console.log('gogogo')
 
         const contract = await new web3Info.value.eth.Contract(ERC20_ABI, contractAddress);
+        console.log('sdfasdf', contractAddress)
         // 代币精度
         const decimals = await contract.methods.decimals().call();
-    
+        console.log(1)
         const amountInt = Math.floor(v * (10 ** Number(decimals)));
-    
+        console.log(2)
+        
         const amountBN = utils.toBigInt(amountInt);
-  
+        console.log(3)
+        
         // 调用转账
+        console.log('12312313')
         const tx = contract.methods.transfer(address, amountBN).send({ from: account.value })
+        console.log(tx)
         tx.catch(e => {
+          console.log('cccccccccccccccccc')
           reject(new Error(e))
         })
         tx.on("transactionHash",async (hash) => {
@@ -224,8 +234,8 @@ export const useWeb3Store = defineStore("web3", () => {
 
   const refresh = async () => {
     await post('/api/v1/auth/refresh', {
-      accessToken: window.localStorage.getItem("accessToken"),
-      refreshToken: window.localStorage.getItem("refreshToken")
+      accessToken: window.sessionStorage.getItem("accessToken"),
+      refreshToken: window.sessionStorage.getItem("refreshToken")
     });
 
   }
@@ -236,6 +246,19 @@ export const useWeb3Store = defineStore("web3", () => {
     accountMask.value = formatAddress(data.address)
     console.log(data)
   }
+
+  const checkAddress = async () => {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const account = accounts[0]
+    console.log(userInfo.value.address)
+    if(account !== userInfo.value.address) {
+      return
+    } else {
+      showToast(translate('tips.addressError'))
+      throw new Error()
+    }
+  }
+
 
   // 获取邀请信息
   const fetchInvitationInfo = async () => {
@@ -282,6 +305,7 @@ export const useWeb3Store = defineStore("web3", () => {
     userInfo,
     inviteCode,
     refresh,
+    checkAddress,
     connectImTokenWallet,
     login,
     fetchChainId,

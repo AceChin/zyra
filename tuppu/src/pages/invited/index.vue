@@ -92,7 +92,7 @@ const list = ref([])
 const finished = ref(false)
 
 const pages = reactive({
-  page: 1,
+  page: 0,
   size: 20,
 })
 
@@ -105,8 +105,9 @@ const init = async () => {
 }
 
 const fetchList = async () => {
+  pages.page += 1
   const records = await web3Store.fetchInvitationDirect({
-    ...pages.value
+    ...pages
   })
   list.value = [...list.value, ...records]
   if(records.length < pages.size)

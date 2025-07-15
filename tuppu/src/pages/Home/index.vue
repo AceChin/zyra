@@ -123,6 +123,7 @@ import TPUicon from '@/assets/images/TPU.png'
 import TPUAicon from '@/assets/images/TPUA.png'
 import USDTicon from '@/assets/images/USDT.png'
 import { useI18n } from 'vue-i18n'
+import { showToast } from "vant";
 
 const { t : $t, locale } = useI18n()
 

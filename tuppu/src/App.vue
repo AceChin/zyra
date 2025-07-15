@@ -20,7 +20,7 @@ locale.value = language == "zh-CN" ? "zh-CN" : "en-US";
 Locale.use(locale.value, vantLanguage[locale.value]);
 console.log(locale.value);
 web3Store.connectToBSC();
-if (localStorage.getItem("accessToken")) {
+if (sessionStorage.getItem("accessToken")) {
   web3Store.fetchUserInfo();
   assetsStore.fetchAssetsAccounts();
 }

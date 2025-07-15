@@ -24,7 +24,7 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   (config) => {
-    const accessToken = window.localStorage.getItem("accessToken");
+    const accessToken = window.sessionStorage.getItem("accessToken");
     config.headers.Authorization = accessToken ? ('Bearer ' + accessToken) : "";
     const language = window.localStorage.getItem("language") || "en-US";
     config.headers["Accept-Language"] = language == "zh-CN" ? "zh-CN" : "en-US";
