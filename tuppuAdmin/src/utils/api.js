@@ -14,7 +14,7 @@ const api = axios.create({
 // 请求拦截器 - 自动添加token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('accessToken')
+    const token = sessionStorage.getItem('accessToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -40,8 +40,8 @@ api.interceptors.response.use(
         ElMessage.error(message || '登录已过期，请重新登录')
         localStorage.removeItem('isLoggedIn')
         localStorage.removeItem('currentUser')
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
+        sessionStorage.removeItem('accessToken')
+        sessionStorage.removeItem('refreshToken')
         localStorage.removeItem('expiresIn')
         window.location.href = '/login'
         return Promise.reject(new Error(message || '登录已过期'))

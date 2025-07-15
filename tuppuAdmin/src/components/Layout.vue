@@ -195,8 +195,8 @@ const handleLogout = () => {
     // 清除所有登录相关的信息
     localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('currentUser')
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
+    sessionStorage.removeItem('accessToken')
+    sessionStorage.removeItem('refreshToken')
     localStorage.removeItem('expiresIn')
     
     router.push('/login')
