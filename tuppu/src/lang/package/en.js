@@ -18,7 +18,7 @@ export default {
     insufficientBalance: 'The balance is insufficient. Do you need to recharge',
     changeNetWork: 'It has been detected that your current chain is not BSC/BEP20. Do you want to switch to BSC/BEP20?',
     sureExit: 'Are you sure you want to quit',
-    addressError: "AThe wallet address and the account address are inconsistent. Please check",
+    addressError: "The wallet address and the account address are inconsistent. Please close and re-authorize",
     buyNodeTips: "Use {price} USDT to buy（{bought} / {maxPerUser}）"
   },
   home: {
