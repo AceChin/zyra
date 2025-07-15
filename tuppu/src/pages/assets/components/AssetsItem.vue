@@ -120,7 +120,7 @@ const props = defineProps({
             // text-align: center;
 
             .label {
-              color: #666666;
+              color: #cccccc;
               white-space: nowrap;
               // margin-right: 1rem;
             }
