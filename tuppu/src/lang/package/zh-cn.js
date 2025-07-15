@@ -18,7 +18,7 @@ export default {
     insufficientBalance: '余额不足，是否需要充值',
     changeNetWork: '检测到您当前的链不是BSC/BEP20，是否切换为BSC/BEP20？',
     sureExit: '确定要退出吗',
-    addressError: '检测到环境异常，请重新登录',
+    addressError: '钱包地址和账户地址不一致，请检查',
     buyNodeTips: "燃烧 {price} USDT 兑换（{bought} / {maxPerUser}）"
   },
   home: {
