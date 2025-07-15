@@ -79,13 +79,14 @@ const pages = reactive({
   size: 10,
 })
 
-
-
 const statusEm = {
   pending: $t('status.pending'),
   approved: $t('status.approved'),
   rejected: $t('status.rejected'),
   processing: $t('status.processing'),
+  confirmed: $t('status.confirmed'),
+  closed: $t('status.closed'),
+  unknown: $t('status.unknown'),
   done: $t('status.done'),
   failed: $t('status.failed'),
 }

@@ -200,11 +200,12 @@
           <el-tree
             :data="treeData"
             :props="{
-              label: 'ethAddress',
+              label: data => `${formatAddress(data.ethAddress)}-${data.levelName}-${data.nodeName || ''}`
             }"
             :load="fetchUserLower"
             lazy
-          ></el-tree>
+          >
+          </el-tree>
         </el-tab-pane>
       </el-tabs>
       <template #footer>
@@ -286,6 +287,16 @@ const initData = async () => {
     tableLoading.value = false;
   }
 };
+
+  const formatAddress = (address) => {
+    if (typeof address !== 'string' || address.length <= 10) {
+      return address;
+    }
+  
+    const prefix = address.slice(0, 6);
+    const suffix = address.slice(-4);
+    return `${prefix}****${suffix}`;
+  }
 
 const fetchUserLower = async (node = { data: {} }, resolve, reject) => {
   console.log(node)
