@@ -21,11 +21,21 @@
         <div class="middle">
           <div class="item">
             <p class="title">{{ $t('home.totalInvite') }}</p>
-            <p class="label">{{ info.totalInvite }}</p>
+            <p class="label">{{ info.totalInvite || 0 }}</p>
           </div>
           <div class="item">
             <p class="title">{{ $t('home.directInvite') }}</p>
-            <p class="label">{{ info.directInvite }}</p>
+            <p class="label">{{ info.directInvite || 0 }}</p>
+          </div>
+        </div>
+        <div class="middle">
+          <div class="item">
+            <p class="title">{{ $t('home.totalInviteNode') }}</p>
+            <p class="label">{{ info.publicNode || 0 }}</p>
+          </div>
+          <div class="item">
+            <p class="title">{{ $t('home.directInviteSuperNode') }}</p>
+            <p class="label">{{ info.superNode || 0 }}</p>
           </div>
         </div>
         <div class="bottom">

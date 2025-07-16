@@ -59,6 +59,8 @@ export default {
     upgrade: '去升级',
     totalInvite: '总邀请',
     directInvite: '直接邀请',
+    totalInviteNode: '邀请公共节点',
+    directInviteSuperNode: '邀请超级节点',
     inviteLink: '邀请链接',
     myInviter: '我的邀请人',
     invitationTime: '被邀请时间',

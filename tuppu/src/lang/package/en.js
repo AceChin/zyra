@@ -59,6 +59,8 @@ export default {
     upgrade: 'Upgrade',
     totalInvite: 'Total Invite',
     directInvite: 'Direct Invite',
+    totalInviteNode: 'Invite Public Nodes',
+    directInviteSuperNode: 'Invite Super Nodes',
     inviteLink: 'Invite Link',
     myInviter: 'My Inviter',
     invitationTime: 'Invited time',
