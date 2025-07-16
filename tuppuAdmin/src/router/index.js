@@ -59,9 +59,9 @@ const router = createRouter({
 
 // 检查token是否有效
 const isTokenValid = () => {
-  const token = sessionStorage.getItem('accessToken')
+  const token = localStorage.getItem('accessToken')
   const expiresIn = localStorage.getItem('expiresIn')
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true'
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
   
   if (!token || !isLoggedIn) {
     return false

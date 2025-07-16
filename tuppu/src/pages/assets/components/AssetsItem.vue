@@ -2,7 +2,7 @@
   <div class="item">
     <div class="top">
       <img class="icon" :src="icons[$attrs.token]" alt="" />
-      <p>{{ $attrs.token }}</p>
+      <p><b>{{ $attrs.token }}</b></p>
       <div class="operate">
         <div v-if="$attrs.token == 'USDT'" class="linkBtn" @click="onWithdraw">{{ $t('button.withdraw') }}</div>
         <!-- <div class="linkBtn" @click="onTransfer">转账</div> -->
@@ -95,7 +95,7 @@ const props = defineProps({
             align-items: center;
 
             .linkBtn {
-              color: #666666;
+              color: #999999;
               margin-right: 0.6rem;
             }
             .button {

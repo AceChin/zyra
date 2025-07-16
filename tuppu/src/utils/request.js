@@ -47,6 +47,7 @@ service.interceptors.response.use(
         const language = localStorage.language;
         showToast(translate("tips.not_logged_in"));
         localStorage.clear();
+        sessionStorage.clear();
         localStorage.setItem("language", language);
         setTimeout(() => {
           location.reload();
@@ -61,8 +62,8 @@ service.interceptors.response.use(
         web3Store.refresh()
 
         // appStore.setLoggedIn(false);
-        window.localStorage.removeItem("accessToken");
-        window.localStorage.removeItem("refreshToken");
+        window.sessionStorage.removeItem("accessToken");
+        window.sessionStorage.removeItem("refreshToken");
 
         // (window as any).web3auth.logout()
         // setTimeout(() => {

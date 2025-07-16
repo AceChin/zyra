@@ -139,8 +139,8 @@ const handleLogin = async () => {
     // 保存登录状态和token信息
     localStorage.setItem('isLoggedIn', 'true')
     localStorage.setItem('currentUser', loginForm.username)
-    sessionStorage.setItem('accessToken', response.accessToken)
-    sessionStorage.setItem('refreshToken', response.refreshToken)
+    localStorage.setItem('accessToken', response.accessToken)
+    localStorage.setItem('refreshToken', response.refreshToken)
     localStorage.setItem('expiresIn', response.expiresIn)
     
     ElMessage.success('登录成功！')
