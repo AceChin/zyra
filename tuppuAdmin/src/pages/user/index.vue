@@ -29,8 +29,10 @@
         </el-input>
       </div>
       <div class="operation-buttons">
+        <el-button @click="setTags">
+          设置标签
+        </el-button>
         <el-button @click="handleRefresh">
-          <!-- <el-icon><Refresh /></el-icon> -->
           查询
         </el-button>
       </div>
@@ -46,6 +48,7 @@
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
+        <el-table-column type="selection" width="55" />
         <el-table-column prop="ethAddress" label="用户" />
         <el-table-column prop="nodeName" label="节点" />
         <el-table-column prop="levelName" label="等级" />
@@ -216,6 +219,17 @@
         </div>
       </template>
     </el-dialog>
+
+    <el-dialog v-model="tagVisible" title="设置标签" width="400">
+      <el-input v-model="tags" placeholder="请输入标签" />
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="visible = false">
+            确定
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script setup>
@@ -244,6 +258,7 @@ const searchParam = ref({
 const selectId = ref("");
 const detail = ref({});
 const treeData = ref([]);
+const multipleSelection = ref([]);
 
 const active = ref('first')
 
@@ -263,6 +278,9 @@ const pages = ref({
   size: 10,
 });
 const records = ref([]);
+
+const tags = ref('')
+const tagVisible = ref(false)
 
 // 初始化数据
 const initData = async () => {
@@ -369,6 +387,12 @@ const handleSelectionChange = (selection) => {
 const handleRefresh = () => {
   initData();
 };
+
+const setTags = () => {
+  console.log(123123)
+  tags.value = ''
+  tagVisible.value = true
+}
 
 onMounted(() => {
   initData();
