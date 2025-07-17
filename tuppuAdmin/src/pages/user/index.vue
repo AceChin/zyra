@@ -52,6 +52,7 @@
         <el-table-column prop="ethAddress" label="用户" />
         <el-table-column prop="nodeName" label="节点" />
         <el-table-column prop="levelName" label="等级" />
+        <el-table-column prop="tags" label="标签" />
         <el-table-column prop="inviteCode" label="邀请码" />
         <!-- <el-table-column prop="createdAt" label="创建时间" /> -->
 
@@ -60,7 +61,7 @@
             {{ scope.row.available ? "启用" : "禁用" }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="80" fixed="right">
+        <el-table-column label="操作" width="160" fixed="right">
           <template #default="scope">
             <el-button
               type="primary"
@@ -68,6 +69,13 @@
               @click="handleViewDetail(scope.row)"
             >
               详情
+            </el-button>
+            <el-button
+              type="primary"
+              size="small"
+              @click="openMemberTagModal(scope.row)"
+            >
+              删除标签
             </el-button>
           </template>
         </el-table-column>
@@ -87,7 +95,7 @@
       />
     </div>
 
-    <el-dialog v-model="visible" title="编辑节点" width="1200">
+    <el-dialog v-model="visible" title="用户详情" width="1200">
       <el-tabs v-if="visible" v-model="active" type="card">
         <el-tab-pane label="资料" name="first">
           <div class="infoContent">
@@ -221,10 +229,30 @@
     </el-dialog>
 
     <el-dialog v-model="tagVisible" title="设置标签" width="400">
-      <el-input v-model="tags" placeholder="请输入标签" />
+      <el-select v-model="tags" multiple placeholder="请选择">
+        <el-option
+          v-for="item in tagList"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id">
+        </el-option>
+      </el-select>
       <template #footer>
         <div class="dialog-footer">
-          <el-button type="primary" @click="visible = false">
+          <el-button type="primary" @click="onSureTag">
+            确定
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="userTagVisible" title="修改标签" width="400">
+      <el-tag v-for="item of userTags" :key="item.id" closable @close="() => onDeleteUserTag(item)">
+        {{ item.tagName }}
+      </el-tag>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="userTagVisible = false">
             确定
           </el-button>
         </div>
@@ -234,8 +262,9 @@
 </template>
 <script setup>
 import { ref, onMounted, computed, reactive } from "vue";
-import { userAPI, walletAPI } from "../../utils/api";
+import { userAPI, walletAPI, tagAPI } from "../../utils/api";
 import { Search } from "@element-plus/icons-vue";
+import { ElMessage } from 'element-plus'
 
 const typeEm = {
   charge: "充值",
@@ -258,13 +287,15 @@ const searchParam = ref({
 const selectId = ref("");
 const detail = ref({});
 const treeData = ref([]);
-const multipleSelection = ref([]);
+const tagList = ref([]);
+const userTags = ref([]);
 
 const active = ref('first')
 
 // 表格数据
 const tableData = ref([]);
 const visible = ref(false);
+const userTagVisible = ref(false);
 const tableLoading = ref(false);
 const selectedRows = ref([]); // 选中的行
 
@@ -279,13 +310,17 @@ const pages = ref({
 });
 const records = ref([]);
 
-const tags = ref('')
+const tags = ref([])
 const tagVisible = ref(false)
+
+const fetchTag = async () => {
+  tagList.value = await tagAPI.getTagList()
+}
 
 // 初始化数据
 const initData = async () => {
   tableLoading.value = true;
-
+  fetchTag()
   try {
     const params = {
       ...searchQuery.value,
@@ -389,9 +424,43 @@ const handleRefresh = () => {
 };
 
 const setTags = () => {
-  console.log(123123)
-  tags.value = ''
+  if(selectedRows.value == 0) {
+    ElMessage.error("至少要选择一位用户");
+    return
+  }
+  tags.value = []
   tagVisible.value = true
+}
+
+const onSetTags = async () => {
+  await userAPI.setUserTag({
+    memberIds: '',
+  })
+  tagVisible.value = false
+}
+
+const onSureTag = async () => {
+  await userAPI.setUserTag({
+    memberIds: selectedRows.value.map(i => i.id),
+    tagIds: tags.value,
+  })
+  tagVisible.value = false
+  ElMessage.success('设置成功')
+  handleRefresh()
+}
+
+const openMemberTagModal = async (v) => {
+  // v.id
+  selectId.value = v.id
+  const data = await userAPI.fetchUserTag(v.id)
+  console.log(data)
+  userTags.value = data
+  userTagVisible.value = true
+}
+
+const onDeleteUserTag = async (v) => {
+  await userAPI.deleteUserTag({memberId: selectId.value, tagId: v.tagId})
+  openMemberTagModal({ id: selectId.value })
 }
 
 onMounted(() => {

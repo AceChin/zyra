@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from '../components/LoginPage.vue'
 import WithdrawPage from '../pages/withdraw/index.vue'
+import TagPage from '../pages/tag/index.vue'
 import UserPage from '../pages/user/index.vue'
 import RecordsPage from '../pages/records/index.vue'
 import NodePage from '../pages/node/index.vue'
@@ -37,6 +38,11 @@ const routes = [
         path: '/records',
         name: 'Records',
         component: RecordsPage
+      },
+      {
+        path: '/tag',
+        name: 'Tag',
+        component: TagPage
       },
       {
         path: '/node',
