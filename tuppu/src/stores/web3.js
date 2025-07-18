@@ -249,9 +249,8 @@ export const useWeb3Store = defineStore("web3", () => {
 
   const checkAddress = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const account = accounts[0]
-    console.log(userInfo.value.address)
-    if(account !== userInfo.value.address) {
+    const a = accounts[0]
+    if(a == userInfo.value.address) {
       return
     } else {
       showToast(translate('tips.addressError'))
