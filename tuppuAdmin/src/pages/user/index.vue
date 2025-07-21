@@ -61,7 +61,7 @@
             {{ scope.row.available ? "启用" : "禁用" }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="160" fixed="right">
+        <el-table-column label="操作" width="260" fixed="right">
           <template #default="scope">
             <el-button
               type="primary"
@@ -69,6 +69,15 @@
               @click="handleViewDetail(scope.row)"
             >
               详情
+            </el-button>
+            <el-button
+              type="success"
+              size="small"
+              :disabled="!walletConnected"
+              @click="openAmountModal(scope.row)"
+            >
+              <el-icon v-if="walletConnected"><Wallet /></el-icon>
+              {{ walletConnected ? "修改余额" : "需连接钱包" }}
             </el-button>
             <el-button
               type="primary"
@@ -247,7 +256,7 @@
     </el-dialog>
 
     <el-dialog v-model="userTagVisible" title="修改标签" width="400">
-      <el-tag v-for="item of userTags" :key="item.id" closable @close="() => onDeleteUserTag(item)">
+      <el-tag v-for="item of userTags" :key="item.id" style="margin: 5px;" closable @close="() => onDeleteUserTag(item)">
         {{ item.tagName }}
       </el-tag>
       <template #footer>
@@ -258,13 +267,26 @@
         </div>
       </template>
     </el-dialog>
+    <el-dialog v-model="amountVisible" title="修改余额" width="400">
+      <el-input v-model="amountValue" placeholder="请输入金额" />
+      <el-input v-model="remark" type="textarea" style="margin-top: 20px" placeholder="请输入备注" />
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="onSureModifyAmount">
+            确定
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script setup>
 import { ref, onMounted, computed, reactive } from "vue";
 import { userAPI, walletAPI, tagAPI } from "../../utils/api";
-import { Search } from "@element-plus/icons-vue";
-import { ElMessage } from 'element-plus'
+import { useWalletStore } from '../../pinia'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { Search, Wallet } from '@element-plus/icons-vue'
+import { signAmountData } from '../../utils/wallet'
 
 const typeEm = {
   charge: "充值",
@@ -279,12 +301,19 @@ const typeEm = {
   mine: "挖矿",
 };
 
+const walletStore = useWalletStore()
+
+const walletConnected = computed(() => walletStore.walletConnected)
+const walletAccount = computed(() => walletStore.walletAccount)
+
 // 搜索查询
 const searchQuery = ref({});
 const searchParam = ref({
   range: [],
 });
 const selectId = ref("");
+const remark = ref("");
+const amountValue = ref("");
 const detail = ref({});
 const treeData = ref([]);
 const tagList = ref([]);
@@ -295,6 +324,7 @@ const active = ref('first')
 // 表格数据
 const tableData = ref([]);
 const visible = ref(false);
+const amountVisible = ref(false);
 const userTagVisible = ref(false);
 const tableLoading = ref(false);
 const selectedRows = ref([]); // 选中的行
@@ -461,6 +491,35 @@ const openMemberTagModal = async (v) => {
 const onDeleteUserTag = async (v) => {
   await userAPI.deleteUserTag({memberId: selectId.value, tagId: v.tagId})
   openMemberTagModal({ id: selectId.value })
+  initData()
+}
+
+// 确认余额
+const onSureModifyAmount = (row) => {
+  userAPI.getRawSignMessage({
+    address: walletAccount.value,
+    memberId: selectId.value,
+    token: localStorage.getItem('accessToken'),
+    amount: amountValue.value,
+  }).then(async (res) => {  
+    console.log(res)
+    // executeReject(row, res)
+    const signData = await signAmountData(res.message)
+    console.log(signData)
+    await userAPI.sureTransfer({
+      address: res.to,
+      message: signData.message,
+      signature: signData.signature,
+      nonce: res.nonce,
+      remark: remark.value
+    })
+  })
+  
+}
+
+const openAmountModal = (v) => {
+  selectId.value = v.id
+  amountVisible.value = true
 }
 
 onMounted(() => {

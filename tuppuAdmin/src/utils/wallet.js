@@ -146,6 +146,25 @@ export const signApprovalData = async (message) => {
     throw error
   }
 }
+// 签名修改余额数据
+export const signAmountData = async (message) => {
+  if (!walletState.connected) {
+    throw new Error('请先连接钱包')
+  }
+
+
+  try {
+    const signature = await signMessage(message)
+    
+    return {
+      message,
+      signature,
+      signer: walletState.account
+    }
+  } catch (error) {
+    throw error
+  }
+}
 
 // 格式化地址显示
 export const formatAddress = (address) => {

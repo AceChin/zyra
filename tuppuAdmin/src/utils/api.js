@@ -140,7 +140,13 @@ export const userAPI = {
   },
   fetchUserTag: (memberId) => {
     return api.get(`/member/tags/${memberId}`)
-  }
+  },
+  getRawSignMessage: (params) => {
+    return api.get(`/wallet/adjust-sign-message`,{ params })
+  },
+  sureTransfer: (data) => {
+    return api.put(`/wallet/adjust-confirm`, data)
+  },
 }
 
 export const tagAPI = {
