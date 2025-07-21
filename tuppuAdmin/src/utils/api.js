@@ -132,8 +132,29 @@ export const userAPI = {
   fetchUserLower: (id) => {
     return api.get(`/member/child/${id}`)
   },
+  setUserTag: (data) => {
+    return api.post('/member/tags', data)
+  },
+  deleteUserTag: (params) => {
+    return api.delete(`/member/tags/${params.memberId}`, { params })
+  },
+  fetchUserTag: (memberId) => {
+    return api.get(`/member/tags/${memberId}`)
+  }
 }
 
+export const tagAPI = {
+  // 获取流水列表
+  getTagList: (params) => {
+    return api.get('/tag/list', { params })
+  },
+  createTag: (params) => {
+    return api.post('/tag/create', params)
+  },
+  modifyTag: (params) => {
+    return api.put('/tag/update', params)
+  },
+}
 export const walletAPI = {
   // 获取流水列表
   getRecordList: (params) => {

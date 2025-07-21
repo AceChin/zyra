@@ -81,6 +81,10 @@
             <el-icon><setting /></el-icon>
             <span>节点管理</span>
           </el-menu-item>
+          <el-menu-item index="/tag">
+            <el-icon><PriceTag /></el-icon>
+            <span>标签管理</span>
+          </el-menu-item>
         </el-menu>
   
       <div class="admin-main">
@@ -107,6 +111,7 @@ import {
   User,
   Discount,
   Tickets,
+  PriceTag
 } from '@element-plus/icons-vue'
 
 import { 
