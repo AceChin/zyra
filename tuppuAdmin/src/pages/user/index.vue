@@ -94,7 +94,6 @@
     <!-- 分页 -->
     <div class="pagination-container">
       <el-pagination
-        v-model:current-page="currentPage"
         v-model:page-size="pageSize"
         :page-sizes="[10, 20, 50, 100]"
         :total="total >>> 0"
@@ -499,7 +498,7 @@ const onSureModifyAmount = (row) => {
   userAPI.getRawSignMessage({
     address: walletAccount.value,
     memberId: selectId.value,
-    token: localStorage.getItem('accessToken'),
+    token: 'USDT',
     amount: amountValue.value,
   }).then(async (res) => {  
     console.log(res)
@@ -507,12 +506,14 @@ const onSureModifyAmount = (row) => {
     const signData = await signAmountData(res.message)
     console.log(signData)
     await userAPI.sureTransfer({
-      address: res.to,
+      address: walletAccount.value,
       message: signData.message,
       signature: signData.signature,
       nonce: res.nonce,
       remark: remark.value
     })
+    amountVisible.value = false
+    ElMessage.success('修改成功')
   })
   
 }
