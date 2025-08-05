@@ -74,6 +74,7 @@ export default {
     sure: 'Sure',
     cancel: 'Cancel',
     all: 'All',
+    activity: 'Activity',
     mine: 'Mine',
     charge: 'Deposit',
     transfer: 'Transfer',

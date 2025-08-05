@@ -35,11 +35,47 @@ web3Store.setInviteCode(paramsObject.inviteCode);
 </template>
 
 <style lang="scss">
+
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('./assets/font/ComfortaaBold/ComfortaaBold.eot'); /* IE9 兼容 */
+  src: url('./assets/font/ComfortaaBold/ComfortaaBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./assets/font/ComfortaaBold/ComfortaaBold.woff') format('woff'), /* 现代浏览器 */
+       url('./assets/font/ComfortaaBold/ComfortaaBold.ttf') format('truetype'); /* 老版Safari、Android等 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: 'Comfortaa';
+//   src: url('./assets/font/ComfortaaLight/ComfortaaLight.eot'); /* IE9 兼容 */
+//   src: url('./assets/font/ComfortaaLight/ComfortaaLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('./assets/font/ComfortaaLight/ComfortaaLight.woff') format('woff'), /* 现代浏览器 */
+//        url('./assets/font/ComfortaaLight/ComfortaaLight.ttf') format('truetype'); /* 老版Safari、Android等 */
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: 'Comfortaa';
+//   src: url('./assets/font/ComfortaaRegular/ComfortaaRegular.eot'); /* IE9 兼容 */
+//   src: url('./assets/font/ComfortaaRegular/ComfortaaRegular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('./assets/font/ComfortaaRegular/ComfortaaRegular.woff') format('woff'), /* 现代浏览器 */
+//        url('./assets/font/ComfortaaRegular/ComfortaaRegular.ttf') format('truetype'); /* 老版Safari、Android等 */
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+
+
 #app {
-  background: #171717 url("@/assets/images/bg.jpg") no-repeat center center;
-  background-size: 100% 100%;
+  background: #171717 url("@/assets/images/main-bg.png") no-repeat;
+  background-size: cover;
   min-height: 100vh;
   padding: 0;
+  font-family: Comfortaa, Comfortaa;
+  height: 100vh;
+  overflow: auto;
 }
 
 .page {
@@ -53,11 +89,12 @@ web3Store.setInviteCode(paramsObject.inviteCode);
 :root {
   --van-primary-color: #e0f64b;
   --van-button-primary-background: linear-gradient( 180deg, #612DFB 0%, #8E5EEC 100%);;
-  --van-nav-bar-title-text-color: #e0f64b;
+  --van-nav-bar-title-text-color: #ffffff;
+  --van-nav-bar-icon-color: #ffffff;
   --van-button-mini-height: 3rem;
   // --van-primary-color: transparent;
   --van-button-plain-background: transparent;
-  --van-nav-bar-background: #171717;
+  --van-nav-bar-background: url("@/assets/images/main-bg.png") top center / cover no-repeat;
   --van-background-2: #21335A;
   --van-picker-mask-color: #171717;
   --van-button-default-border-color: #21335A;
@@ -71,6 +108,7 @@ web3Store.setInviteCode(paramsObject.inviteCode);
   --van-popup-background: #202020;
   --van-toast-background: rgba(0, 0, 0, 1);
   --van-toast-default-width: 150px;
+  --van-list-text-line-height: 20px;
   --van-radius-lg: 18px;
   --van-button-radius: 10px;
   --van-text-color: #ffffff;

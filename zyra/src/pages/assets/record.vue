@@ -21,40 +21,18 @@
         </van-button>
         <van-button
           class="button"
-          v-bind="types == 'mine' ? buyButton : defineButton"
-          @click="() => changeStatus('mine')"
+          v-bind="types == 'mining' ? buyButton : defineButton"
+          @click="() => changeStatus('mining')"
         >
-        {{ $t('button.mine') }}
+        {{ $t('home.joinMine') }}
         </van-button>
         <van-button
           class="button"
-          v-bind="types == 'charge' ? buyButton : defineButton"
-          @click="() => changeStatus('charge')"
+          v-bind="types == 'activity' ? buyButton : defineButton"
+          @click="() => changeStatus('activity')"
         >
-        {{ $t('button.charge') }}
+        {{ $t('button.activity') }}
         </van-button>
-        <van-button
-          class="button"
-          v-bind="types == 'transfer' ? buyButton : defineButton"
-          @click="() => changeStatus('transfer')"
-        >
-        {{ $t('button.transfer') }}
-        </van-button>
-        <van-button
-          class="button"
-          v-bind="types == 'withdraw' ? buyButton : defineButton"
-          @click="() => changeStatus('withdraw')"
-        >
-        {{ $t('button.withdraw') }}
-        </van-button>
-        <van-button
-          class="button"
-          v-bind="types == 'reward' ? buyButton : defineButton"
-          @click="() => changeStatus('reward')"
-        >
-        {{ $t('button.reward') }}
-        </van-button>
-
       </div>
 
       <img class="filtrate" src="../../assets/images/filtrate.png" @click="openPopup" />
@@ -72,8 +50,8 @@
           :class="['item', item.direction == 'in' ? '' : 'down']"
         >
           <div class="left">
-            <p class="unit">{{ item.token }}</p>
-            <p class="type">{{ typeEm[item.type] }}</p>
+            <p class="unit">{{ item.token }} <span class="type">{{ typeEm[item.type] }}</span> </p>
+            
             <p class="date">{{ item.createdTime }}</p>
           </div>
           <div class="price">{{ item.direction == 'in' ? '+' : '' }}{{ item.amount }}</div>
@@ -181,12 +159,11 @@ const typeEm = {
 }
 
 const defineButton = {
-  plain: false,
-  color: "#333333",
+  color: '#4B3DB1',
+  style: `color: #CED7F9`
 };
 
 const buyButton = {
-  plain: true,
   type: "primary",
 };
 

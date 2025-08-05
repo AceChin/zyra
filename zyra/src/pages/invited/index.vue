@@ -10,54 +10,59 @@
       @click-left="onClickLeft">
     </van-nav-bar>
     <main>
-      <div class="myInfo">
-        <div class="top">
-          <img class="icon" src="../../assets/images/invitedIcon.png" alt="">
-          {{ info.levelName }}
-          <div class="toUp" @click="toPage">
-            {{ $t('home.toUpgrade') }} <img src="../../assets/images/rightArrow-e0f.svg" alt="">
+      <div class="box">
+        <div class="myInfo">
+          <div class="top">
+            <img class="icon" src="../../assets/images/invitedIcon.png" alt="">
+            {{ info.levelName }}
+            <div class="toUp" @click="toPage">
+              <img src="../../assets/images/rightArrow.svg" alt="">
+            </div>
           </div>
-        </div>
-        <div class="middle">
-          <div class="item">
-            <p class="title">{{ $t('home.totalInvite') }}</p>
-            <p class="label">{{ info.totalInvite || 0 }}</p>
+          <div class="middleBox">
+            <img class="bg" src="../../assets/images/invitedBox.png" alt="">
+
+            <div class="middle">
+              <div class="item">
+                <p class="title">{{ $t('home.totalInvite') }}</p>
+                <p class="label">{{ info.totalInvite || 0 }}</p>
+              </div>
+              <div class="item">
+                <p class="title">{{ $t('home.directInvite') }}</p>
+                <p class="label">{{ info.directInvite || 0 }}</p>
+              </div>
+            </div>
+            <div class="middle">
+              <div class="item">
+                <p class="title">{{ $t('home.totalInviteNode') }}</p>
+                <p class="label">{{ info.publicNode || 0 }}</p>
+              </div>
+              <div class="item">
+                <p class="title">{{ $t('home.directInviteSuperNode') }}</p>
+                <p class="label">{{ info.superNode || 0 }}</p>
+              </div>
+            </div>
           </div>
-          <div class="item">
-            <p class="title">{{ $t('home.directInvite') }}</p>
-            <p class="label">{{ info.directInvite || 0 }}</p>
-          </div>
-        </div>
-        <div class="middle">
-          <div class="item">
-            <p class="title">{{ $t('home.totalInviteNode') }}</p>
-            <p class="label">{{ info.publicNode || 0 }}</p>
-          </div>
-          <div class="item">
-            <p class="title">{{ $t('home.directInviteSuperNode') }}</p>
-            <p class="label">{{ info.superNode || 0 }}</p>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="label">{{ $t('home.inviteLink') }}</div>
-          <div class="invitedInfo">
-            <div class="link">{{ url }}</div>
-            <van-button
-              class="button"
-              type="primary"
-              round
-              @click="onCopy"
-              >{{ $t('button.copy') }}</van-button
-            >
+          <div class="bottom">
+            <div class="label">{{ $t('home.inviteLink') }}</div>
+            <div class="invitedInfo">
+              <div class="link">{{ url }}</div>
+              <van-button
+                class="button"
+                round
+                @click="onCopy"
+                >{{ $t('button.copy') }}</van-button
+              >
+            </div>
           </div>
         </div>
       </div>
-      <div class="myInvitedInfo">
-        <div class="row">
+      <div class="myInvitedInfo rowBox">
+        <div class="column">
           <p class="key">{{ $t('home.myInviter') }}</p>
           <p class="value">{{ web3Store.formatAddress(info.inviterAddress) || '--' }}</p>
         </div>
-        <div class="row">
+        <div class="column">
           <p class="key">{{ $t('home.invitationTime') }}</p>
           <p class="value">{{ formatTime(info.createdAt) }}</p>
         </div>
@@ -72,10 +77,9 @@
         @load="() => fetchList(false)"
       >
         <div v-for="item of list" :key="item.ethAddress" class="row">
-          <p class="value">{{ web3Store.formatAddress(item.ethAddress) }}</p>
+          <p class="key">{{ web3Store.formatAddress(item.ethAddress) }}</p>
           <p class="value">{{ formatTime(item.createdAt) }}</p>
         </div>
-    
     </van-list>
       </div>
     </main>

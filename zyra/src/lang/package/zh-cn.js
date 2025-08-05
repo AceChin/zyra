@@ -74,6 +74,7 @@ export default {
     sure: '确认',
     cancel: '取消',
     all: '全部',
+    activity: '活动',
     mine: '挖矿',
     charge: '充值',
     transfer: '转账',
