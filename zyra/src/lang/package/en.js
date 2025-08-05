@@ -19,7 +19,7 @@ export default {
     changeNetWork: 'It has been detected that your current chain is not BSC/BEP20. Do you want to switch to BSC/BEP20?',
     sureExit: 'Are you sure you want to quit',
     addressError: "The wallet address and the account address are inconsistent. Please close and re-authorize",
-    buyNodeTips: "Use {price} USDT to buy（{bought} / {maxPerUser}）"
+    buyNodeTips: "Buy Now ( {price} USDT )"
   },
   home: {
     mainAssets: 'Main Assets', 

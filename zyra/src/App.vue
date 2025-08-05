@@ -52,15 +52,19 @@ web3Store.setInviteCode(paramsObject.inviteCode);
 
 :root {
   --van-primary-color: #e0f64b;
+  --van-button-primary-background: linear-gradient( 180deg, #612DFB 0%, #8E5EEC 100%);;
   --van-nav-bar-title-text-color: #e0f64b;
   --van-button-mini-height: 3rem;
   // --van-primary-color: transparent;
   --van-button-plain-background: transparent;
   --van-nav-bar-background: #171717;
-  --van-background-2: #171717;
+  --van-background-2: #21335A;
   --van-picker-mask-color: #171717;
-  --van-button-default-border-color: var(--van-primary-color);
-  --van-button-primary-color: #202020;
+  --van-button-default-border-color: #21335A;
+  --van-button-primary-border-color: #AD8FFF;
+  --van-button-default-color: #94A3C6;
+  --van-button-default-background: #21335A;
+  --van-button-primary-color: #ffffff;
   --van-dialog-radius: 8px;
   --van-dialog-background: #202020;
   --van-toast-text-color: #ffffff;
@@ -68,6 +72,7 @@ web3Store.setInviteCode(paramsObject.inviteCode);
   --van-toast-background: rgba(0, 0, 0, 1);
   --van-toast-default-width: 150px;
   --van-radius-lg: 18px;
+  --van-button-radius: 10px;
   --van-text-color: #ffffff;
   --van-overlay-background: rgba(0, 0, 0, 0.8);
 }

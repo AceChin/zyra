@@ -19,7 +19,7 @@ export default {
     changeNetWork: '检测到您当前的链不是BSC/BEP20，是否切换为BSC/BEP20？',
     sureExit: '确定要退出吗',
     addressError: '钱包地址和账户地址不一致，请关闭后重新授权',
-    buyNodeTips: "燃烧 {price} USDT 兑换（{bought} / {maxPerUser}）"
+    buyNodeTips: "立即购买 ( {price} USDT )"
   },
   home: {
     mainAssets: '主要资产', 

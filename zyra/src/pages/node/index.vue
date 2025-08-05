@@ -1,67 +1,51 @@
 <template>
   <div class="page">
-    <van-nav-bar safe-area-inset-top fixed placeholder :border="false">
-      <template #left>
-        <img @click="openMenu" class="menu" src="@/assets/images/menu.svg" />
-        <img class="logo" src="@/assets/images/logo.svg" />
-      </template>
-      <template v-if="!web3Store.accountMask" #right>
-        <div class="navRight" @click="connect">
-          <p class="title">{{ $t('button.linkWallet') }}</p>
-          <div class="connectBtn">
-            <img class="connectIcon" src="@/assets/images/connect.svg" alt="" />
-          </div>
-        </div>
-      </template>
-      <template v-else #right>
-        <div class="navRight" @click.stop="changeLangue">
-          <p class="title">{{ web3Store.accountMask || '' }}</p>
-          <div class="connectBtn">
-            {{ locale.slice(0, 2).toLocaleUpperCase() }}
-          </div>
-        </div>
-      </template>
-    </van-nav-bar>
+    <img class="bg" src="@/assets/images/nodeBg.png" alt="">
+    <van-nav-bar safe-area-inset-top fixed :border="false"></van-nav-bar>
     <main>
+      <img class="logo" src="@/assets/images/logo.png" mode="widtnFix" />
       <div class="mainTitle">{{ nodeInfo.title || '' }}</div>
-      <!-- <div class="date">{{ nodeStore.dateRang() }}</div> -->
+      <div class="date">{{ nodeStore.dateRang() }}</div>
+      <div class="nodeBox">
+        <img class="boxBg" src="@/assets/images/nodeBox.png" mode="widtnFix" />
 
-      <div class="tabs">
-        <van-button
-          v-for="item of nodeStore.nodeList"
-          :key="item.id"
-          class="button"
-          v-bind="status == item.id ? selectButton : defineButton"
-          @click="() => changeStatus(item.id)">
-          {{ item.name }}
-        </van-button>
-
-      </div>
-
-      <div v-if="nodeContent.id" class="nodeInfo">
-          <div class="infoTitle">{{ nodeContent.name }}
-            <span v-if="nodeContent.stock" style="color: #B8B8B8">
-              （{{ nodeContent.total - nodeContent.stock }}/{{ nodeContent.total }}）
-            </span>
-          </div>
-
-          <div class="content" >
-            {{ nodeContent.content }}
-          </div>
-          <div class="progress">
-            <div class="step" :style="`width: ${ progress }%`"></div>
-          </div>
-
+        <div class="tabs">
           <van-button
+            v-for="item of nodeStore.nodeList"
+            :key="item.id"
             class="button"
-            type="primary"
-            :loading="loadingStore['node/buyNode']"
-            :disabled="nodeContent.maxPerUser <= nodeContent.bought"
-            round
-            @click="buyNode">
-            {{ $t('tips.buyNodeTips', {price: nodeContent.price || 0,bought: nodeContent.bought || 0, maxPerUser: nodeContent.maxPerUser || 0}) }}
-            
+            v-bind="status == item.id ? selectButton : defineButton"
+            @click="() => changeStatus(item.id)">
+            {{ item.name }}
           </van-button>
+        </div>
+
+        <div v-if="nodeContent.id" class="nodeInfo">
+            <div class="infoTitle">
+              {{ nodeContent.name }}
+              <span v-if="nodeContent.stock" style="color: #94A3C6">
+                ({{ nodeContent.total - nodeContent.stock }}/{{ nodeContent.total }})
+              </span>
+            </div>
+
+            <div class="content" >
+              <div class="label">权益:</div>
+              {{ nodeContent.content }}
+            </div>
+            <!-- <div class="progress">
+              <div class="step" :style="`width: ${ progress }%`"></div>
+            </div> -->
+
+        </div>
+        <van-button
+          class="bottomButton"
+          type="primary"
+          :loading="loadingStore['node/buyNode']"
+          :disabled="nodeContent.maxPerUser <= nodeContent.bought"
+          @click="buyNode">
+          {{ $t('tips.buyNodeTips', { price: nodeContent.price || 0 }) }}
+        </van-button>
+        
       </div>
 
     </main>
@@ -83,13 +67,12 @@ import { showToast } from 'vant';
 const { t : $t, locale } = useI18n()
 
 const defineButton = {
-  plain: false,
-  color: "#333333",
+  // type: "primary",
+
 }
 
 const selectButton = {
-  plain: true,
-  type: "primary"
+  type: "primary",
 }
 
 const router = useRouter();
