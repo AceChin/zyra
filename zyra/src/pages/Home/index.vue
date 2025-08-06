@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <van-nav-bar safe-area-inset-top fixed placeholder :border="false">
+    <!-- <van-nav-bar safe-area-inset-top fixed placeholder :border="false">
       <template #left>
         <img @click="openMenu" class="menu" src="@/assets/images/menu.svg" />
         <img class="logo" src="@/assets/images/logo.svg" />
@@ -21,7 +21,12 @@
           </div>
         </div>
       </template>
-    </van-nav-bar>
+    </van-nav-bar> -->
+    <header>
+      <img class="bg" src="@/assets/images/homeBg.png" alt="">
+      <img class="logo" src="@/assets/images/logo.png" mode="widtnFix" />
+    </header>
+    
     <main v-if="web3Store.accountMask">
       <div class="assets" @click="toAssets">
         <div class="top">
@@ -96,11 +101,10 @@
     <main v-else-if="loadingStore['web3/connectImTokenWallet'] || loadingStore['web3/fetchUserInfo']">
       <van-loading class="loading" type="spinner" />
     </main>
-    <main v-else>
+    <main v-else class="notLoginMain">
       <van-button
         class="connectButton"
         type="primary"
-        round
         @click="connect">{{ $t('button.linkWallet') }}</van-button>
       <p class="tips">{{ $t('home.tipsLinkWallet') }}</p>
       <p v-if="web3Store.inviteCode" class="invitedCode">{{ $t('home.inviteCode') }}：{{ web3Store.inviteCode }}</p>
