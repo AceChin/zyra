@@ -1,15 +1,21 @@
 <template>
   <div class="page">
-    <!-- <van-nav-bar safe-area-inset-top fixed placeholder :border="false">
+    <van-nav-bar
+      background="transparent"
+      :class="web3Store.accountMask && 'bar'"
+      safe-area-inset-top
+      fixed
+      placeholder
+      :border="false">
       <template #left>
-        <img @click="openMenu" class="menu" src="@/assets/images/menu.svg" />
-        <img class="logo" src="@/assets/images/logo.svg" />
+        <img @click="openMenu" class="menu" src="@/assets/images/menu.png" />
+        <img class="logo" src="@/assets/images/logo.png" />
       </template>
-      <template v-if="!web3Store.accountMask" #right>
+      <!-- <template v-if="!web3Store.accountMask" #right>
         <div class="navRight" @click="connect">
           <p class="title">{{ $t('button.linkWallet') }}</p>
           <div class="connectBtn">
-            <img class="connectIcon" src="@/assets/images/connect.svg" alt="" />
+            <img class="connectIcon" src="@/assets/images/connect.png" alt="" />
           </div>
         </div>
       </template>
@@ -20,52 +26,50 @@
             {{ locale.slice(0, 2).toLocaleUpperCase() }}
           </div>
         </div>
-      </template>
-    </van-nav-bar> -->
-    <header>
-      <img class="bg" src="@/assets/images/homeBg.png" alt="">
+      </template> -->
+    </van-nav-bar>
+    <header v-if="!web3Store.accountMask && !(loadingStore['web3/connectImTokenWallet'] || loadingStore['web3/fetchUserInfo'])">
+      <img class="bg" src="@/assets/images/homeBg.png">
       <img class="logo" src="@/assets/images/logo.png" mode="widtnFix" />
     </header>
     
-    <main v-if="web3Store.accountMask">
-      <div class="assets" @click="toAssets">
-        <div class="top">
-          {{ $t('home.mainAssets') }}
-          <img class="down" src="@/assets/images/downArrow.svg" alt="">
-          <img class="right" src="@/assets/images/rightArrow.svg" alt="">
-        </div>
-        <div v-if="assetsStore.assetsList.length > 0" class="info">
-          <div v-for="item in 2" :key="item" class="item">
-            <div class="name">
-              <img class="icon" :src="icons[assetsStore.assetsList[item - 1]?.token]" alt="">
-              {{ assetsStore.assetsList[item - 1]?.token }}
+    <main class="mainContent" v-if="web3Store.accountMask">
+
+      <div class="infoContent">
+        <div class="assets" @click="toAssets">
+          <img class="bg" src="@/assets/images/invitedBox.png">
+
+          <div class="top">
+            {{ $t('home.mainAssets') }}
+            <img class="down" src="@/assets/images/downArrow.svg">
+            <img class="right" src="@/assets/images/rightArrow.svg">
+          </div>
+          <div v-if="assetsStore.assetsList.length > 0" class="info">
+            <div v-for="item in 2" :key="item" class="item">
+              <div class="name">
+                <img class="icon" :src="icons[assetsStore.assetsList[item - 1]?.token]">
+                {{ assetsStore.assetsList[item - 1]?.token }}
+              </div>
+              <div class="label">{{ assetsStore.assetsList[item - 1]?.balance }}</div>
             </div>
-            <div class="label">{{ assetsStore.assetsList[item - 1]?.balance }}</div>
+          </div>
+        </div>
+
+        <div class="operation">
+          <div class="item" @click="() => toPage('/invited')">
+            <img class="icon" src="@/assets/images/invite.png">
+            {{ $t('home.invite') }}
+            <img class="right" src="@/assets/images/rightArrow.svg">
+          </div>
+          <div class="item" @click="notOpen">
+            <img class="icon" src="@/assets/images/mine.png">
+            {{ $t('home.joinMine') }}
+            <img class="right" src="@/assets/images/rightArrow.svg">
           </div>
         </div>
       </div>
-
-      <div class="operation">
-        <div class="item" @click="() => toPage('/invited')">
-          <img class="icon" src="@/assets/images/invite.svg" alt="">
-          {{ $t('home.invite') }}
-          <img class="right" src="@/assets/images/rightArrow.svg" alt="">
-        </div>
-        <div class="item" @click="notOpen">
-          <img class="icon" src="@/assets/images/mine.svg" alt="">
-          {{ $t('home.joinMine') }}
-          <img class="right" src="@/assets/images/rightArrow.svg" alt="">
-        </div>
-      </div>
-
-<!--       <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
-      </van-swipe> -->
       
-      <div class="realTimeData">
+      <!-- <div class="realTimeData">
         <div class="left">
           <div class="title">TPU/USDT {{ $t('home.realTimePrice') }}</div>
           <div class="dealInfo">
@@ -76,7 +80,15 @@
             {{ $t('home.deal') }}
             <img class="right" src="@/assets/images/rightArrow.svg" alt="">
           </div>
-      </div>
+      </div> -->
+
+      <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe-item>1</van-swipe-item>
+        <van-swipe-item>2</van-swipe-item>
+        <van-swipe-item>3</van-swipe-item>
+        <van-swipe-item>4</van-swipe-item>
+      </van-swipe>
+
       <h4>{{ $t('home.statistics') }}</h4>
       <div class="realTimeData statistics">
         <div class="item">
@@ -98,7 +110,7 @@
       </div>
 
     </main>
-    <main v-else-if="loadingStore['web3/connectImTokenWallet'] || loadingStore['web3/fetchUserInfo']">
+    <main class="loadMain" v-else-if="loadingStore['web3/connectImTokenWallet'] || loadingStore['web3/fetchUserInfo']">
       <van-loading class="loading" type="spinner" />
     </main>
     <main v-else class="notLoginMain">
@@ -114,6 +126,7 @@
 
     <Language :visible="languageVisible" :onClose="() => languageVisible = false" :onOk="init" />
     <InvitedModal :visible="invitedVisible" :onClose="() => invitedVisible = false" :cb="connect" :loading="loginLoading" />
+    <!-- <div class="invitationCode">{{ $t('home.invitationCode') }}：{{ web3Store.inviteCode }}</div> -->
   </div>
 </template>
 <script setup>

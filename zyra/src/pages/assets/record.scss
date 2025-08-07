@@ -1,6 +1,10 @@
   .page {
     min-height: 100vh;
 
+    ::v-deep(.van-sticky) {
+      background: url("@/assets/images/main-bg.png") top center / cover no-repeat;
+    }
+
     header {
       display: flex;
       align-items: center;

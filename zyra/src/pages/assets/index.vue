@@ -1,13 +1,8 @@
 <template>
   <div class="page">
     <header>
-      <p class="title">{{ $t('home.assets') }}</p>
-      <p class="recordIcon" style="margin-left: auto;margin-right: 0.8rem;" @click="() => toPage('/assets/withdrawRecord')">
-        <img class="icon" src="../../assets/images/record.svg" alt="">
-        {{ $t('home.withdrawRecord') }}
-      </p>
+      <p class="title"></p>
       <p class="recordIcon" @click="() => toPage('/assets/record')">
-        <img class="icon" src="../../assets/images/record.svg" alt="">
         {{ $t('home.record') }}
       </p>
     </header>

@@ -18,7 +18,6 @@ const assetsStore = useAssetsStore();
 const language = window.localStorage.getItem("language") || "en-US";
 locale.value = language == "zh-CN" ? "zh-CN" : "en-US";
 Locale.use(locale.value, vantLanguage[locale.value]);
-console.log(locale.value);
 web3Store.connectToBSC();
 if (sessionStorage.getItem("accessToken")) {
   web3Store.fetchUserInfo();
@@ -94,7 +93,8 @@ web3Store.setInviteCode(paramsObject.inviteCode);
   --van-button-mini-height: 3rem;
   // --van-primary-color: transparent;
   --van-button-plain-background: transparent;
-  --van-nav-bar-background: url("@/assets/images/main-bg.png") top center / cover no-repeat;
+  // --van-nav-bar-background: url("@/assets/images/main-bg.png") top center / cover no-repeat;
+  --van-nav-bar-background: transparent;
   --van-background-2: #21335A;
   --van-picker-mask-color: #171717;
   --van-button-default-border-color: #21335A;

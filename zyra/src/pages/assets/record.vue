@@ -1,42 +1,45 @@
 <template>
   <div class="page">
-    <van-nav-bar
-      safe-area-inset-top
-      left-arrow
-      :title="$t('home.record')"
-      fixed
-      placeholder
-      :border="false"
-      @click-left="onClickLeft"
-    >
-    </van-nav-bar>
-    <header>
-      <div class="btnRow">
-        <van-button
-          class="button"
-          v-bind="types == '' ? buyButton : defineButton"
-          @click="() => changeStatus('')"
-        >
-          {{ $t('button.all') }}
-        </van-button>
-        <van-button
-          class="button"
-          v-bind="types == 'mining' ? buyButton : defineButton"
-          @click="() => changeStatus('mining')"
-        >
-        {{ $t('home.joinMine') }}
-        </van-button>
-        <van-button
-          class="button"
-          v-bind="types == 'activity' ? buyButton : defineButton"
-          @click="() => changeStatus('activity')"
-        >
-        {{ $t('button.activity') }}
-        </van-button>
-      </div>
+    <van-sticky class="sticky">
+      <van-nav-bar
+        safe-area-inset-top
+        left-arrow
+        :title="$t('home.record')"
+        fixed
+        placeholder
+        :border="false"
+        @click-left="onClickLeft"
+      >
+      </van-nav-bar>
+      <header>
+        <div class="btnRow">
+          <van-button
+            class="button"
+            v-bind="types == '' ? buyButton : defineButton"
+            @click="() => changeStatus('')"
+          >
+            {{ $t('button.all') }}
+          </van-button>
+          <van-button
+            class="button"
+            v-bind="types == 'mining' ? buyButton : defineButton"
+            @click="() => changeStatus('mining')"
+          >
+          {{ $t('home.joinMine') }}
+          </van-button>
+          <van-button
+            class="button"
+            v-bind="types == 'activity' ? buyButton : defineButton"
+            @click="() => changeStatus('activity')"
+          >
+          {{ $t('button.activity') }}
+          </van-button>
+        </div>
 
-      <img class="filtrate" src="../../assets/images/filtrate.png" @click="openPopup" />
-    </header>
+        <img class="filtrate" src="../../assets/images/filtrate.png" @click="openPopup" />
+      </header>
+    </van-sticky>
+
     <main>
       <van-list
         :loading="loadingStore['assets/fetchAssetsRecord']"

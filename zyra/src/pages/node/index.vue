@@ -47,7 +47,6 @@
         </van-button>
         
       </div>
-
     </main>
     <Tabbar nowUrl="" />
     <LayoutSilder ref="silder" :onChangeLanguage="changeLangue" />

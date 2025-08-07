@@ -8,7 +8,6 @@
     align-items: center;
 
     .title {
-      font-weight: 600;
       font-size: 1.25rem;
       color: #E0F64B;
       line-height: 1.6rem;
@@ -16,9 +15,8 @@
     .recordIcon {
       display: flex;
       align-items: center;
-      font-weight: 600;
       font-size: 0.8rem;
-      color: #666666;
+      color: #ffffff;
       line-height: 1.2rem;
 
       .icon {
@@ -33,9 +31,7 @@
   main {
     
     .total {
-      background: #333333;
-      border-radius: var(--van-dialog-radius);
-      width: 93vw;
+      width: 94vw;
       margin: 0 auto;
       padding: 0.9rem 1.4rem;
       font-weight: 600;
@@ -43,6 +39,7 @@
       color: #B8B8B8;
       line-height: 1.3rem;
       margin-bottom: 8px;
+
 
       .price {
         font-weight: 600;

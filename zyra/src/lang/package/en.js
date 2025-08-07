@@ -28,7 +28,7 @@ export default {
     inviteCode: 'Invite Code',
     joinMine: 'Mining',
     realTimePrice: "Price",
-    statistics: 'Statistics',
+    statistics: 'ZRYR Output Statisti',
     output: 'Output',
     destroy: 'Destroy',
     effect: 'All effect CP',
@@ -67,6 +67,7 @@ export default {
     chinese: '中文',
     english: 'English',
     plsInvited: 'Please enter the invitation code',
+    invitationCode: 'Invitation Code',
   },
   button: {
     deal: 'Trade',
