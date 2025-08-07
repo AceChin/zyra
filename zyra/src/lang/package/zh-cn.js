@@ -68,6 +68,7 @@ export default {
     english: 'Englist',
     plsInvited: '请先输入邀请码',
     invitationCode: '邀请码',
+    whiteBook: '白皮书',
   },
   button: {
     deal: '去交易',

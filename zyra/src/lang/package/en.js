@@ -37,7 +37,7 @@ export default {
     locale: 'English',
     language: 'Language',
     whitePaper: 'WhitePaper',
-    buyNodeTips: 'Global Node is now on sale',
+    buyNodeTips: 'Global Node is selling',
     nowJoin: 'Join Now',
     exit: 'Sign out',
     record: 'Record',
@@ -68,6 +68,7 @@ export default {
     english: 'English',
     plsInvited: 'Please enter the invitation code',
     invitationCode: 'Invitation Code',
+    whiteBook: 'White Book',
   },
   button: {
     deal: 'Trade',

@@ -2,40 +2,41 @@
   <div :class="['content', visible || 'show']">
     <div v-if="visible" @click="close" class="mask"></div>
     <div :class="['layout', !visible || 'inout']">
-      <div class="top">
-        <img class="avatar" src="@/assets/images/head.png" alt="" />
-        <div class="userInfo">
-          <p class="address">{{ web3Store.accountMask || '' }}</p>
-          <p class="name">{{ web3Store.userInfo?.levelName }} {{ web3Store.userInfo?.nodeName?"· "+web3Store.userInfo?.nodeName:""      }}</p>
+      <img class="layoutBg" src="@/assets/images/layoutBg.png" />
+      <div class="layoutContent">
+        <div class="top">
+          <img class="avatar" src="@/assets/images/head.png" alt="" />
+          <div class="userInfo">
+            <p class="address">{{ web3Store.accountMask || '' }}</p>
+            <p class="name">{{ web3Store.userInfo?.levelName }} {{ web3Store.userInfo?.nodeName?"· "+web3Store.userInfo?.nodeName:""      }}</p>
+          </div>
+          <img @click="close" class="close" src="@/assets/images/closeBtn.png" />
         </div>
-        <img @click="close" class="close" src="@/assets/images/closeBtn.png" />
-      </div>
-      <div class="cell">
-        {{ $t('home.language') }}
-        <div class="cellRight" @click="changeLangue">
-          {{ $t('home.locale') }}
-          <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
+        <div class="cell">
+          {{ $t('home.language') }}
+          <div class="cellRight" @click="changeLangue">
+            {{ $t('home.locale') }}
+            <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
+          </div>
         </div>
-      </div>
-      <!-- <div class="cell">
-        {{ $t('home.whitePaper') }}
-        <div class="cellRight">
-          <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
+        <div class="cell">
+          {{ $t('home.whiteBook') }}
+          <div class="cellRight" @click="changeLangue">
+            <img class="arrow" src="@/assets/images/rightArrow-e0f.svg" />
+          </div>
         </div>
-      </div> -->
-      <div class="advertising" @click="() => toPage('/node')">
-        {{ $t('home.buyNodeTips') }}
-        <p class="joinBtn">{{ $t('home.nowJoin') }}>>></p>
-      </div>
+        <div class="advertising" @click="() => toPage('/node')">
+          {{ $t('home.buyNodeTips') }}
+          <p class="joinBtn">{{ $t('home.nowJoin') }}>>></p>
+        </div>
 
-      <van-button
-        class="button"
-        plain
-        type="primary"
-        @click="logout">{{ $t('home.exit') }}</van-button>
+        <van-button
+          class="button"
+          type="primary"
+          @click="logout">{{ $t('home.exit') }}</van-button>
+      </div>
     </div>
     <Confirm ref="confirm" />
-    <!-- <Language :visible="languageVisible" :onClose="() => languageVisible = false" /> -->
   </div>
 </template>
 <style lang="scss" scoped>
@@ -62,7 +63,7 @@ const { locale, t : $t } = useI18n()
 
 const router = useRouter();
 const web3Store = useWeb3Store()
-const visible = ref(false);
+const visible = ref(true);
 // const languageVisible = ref(false);
 const confirm = ref(null)
 
@@ -113,97 +114,111 @@ defineExpose({ open });
     width: 100%;
   }
   .layout {
-    width: 18.2rem;
-    left: -18.2rem;
-    background-color: #222222;
+    width: 19.2rem;
+    left: -19.2rem;
     padding: 1rem;
     height: 100vh;
     position: absolute;
     top: 0;
     transition: left 0.5s;
-    display: flex;
-    flex-direction: column;
-    // box-shadow:0rem 0rem 1rem rgba(224,246,75,0.2);
 
-    .top {
+    .layoutBg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .layoutContent {
       display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      height: 100%;
 
-      .avatar {
-        width: 2rem;
-        height: 2rem;
-        background-color: aliceblue;
-        margin-right: 0.5rem;
-      }
-
-      .userInfo {
+      .top {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.53rem;
 
-        .address {
-          color: #e0f64b;
-          font-size: 1.1rem;
-          line-height: 1.4rem;
+        .avatar {
+          width: 2.3rem;
+          height: 2.3rem;
+          margin-right: 0.5rem;
         }
-        .name {
-          font-size: 0.8rem;
-          line-height: 1rem;
-          color: #b8b8b8;
-          margin-top: 0.2rem;
+
+        .userInfo {
+          display: flex;
+          flex-direction: column;
+
+          .address {
+            color: #FFFFFF;
+            font-size: 0.85rem;
+            line-height: 1.4rem;
+          }
+          .name {
+            font-size: 0.8rem;
+            line-height: 1rem;
+            color: #BAA1FF;
+            margin-top: 0.2rem;
+          }
         }
-      }
-      .close {
-        width: 1.1rem;
-        height: 1.1rem;
-        margin-left: auto;
-      }
-    }
-
-    .cell {
-      background: #000000;
-      border-radius: 0.5rem;
-      padding: 0.8rem;
-      color: #CCCCCC;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.2rem;
-
-      .cellRight {
-        margin-left: auto;
-
-        .arrow {
-          width: 1.2rem;
-          vertical-align: middle;
+        .close {
+          width: 1.1rem;
+          height: 1.1rem;
+          margin-left: auto;
         }
       }
-    }
-    .advertising {
-      width: 16rem;
-      min-height: 7.3rem;
-      background: #E0F64B;
-      border-radius: var(--van-dialog-radius);
-      margin-top: 7.6rem;
-      font-size: 1.4rem;
-      color: #000000;
-      line-height: 1.85rem;
-      font-weight: bold;
-      padding: 1.2rem 1.6rem;
-      
-      .joinBtn {
+
+      .cell {
+        background: #4616C7;
+        border-radius: 0.5rem;
+        padding: 0.8rem;
+        color: #CCCCCC;
         font-size: 1rem;
-        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        .cellRight {
+          margin-left: auto;
+          color: #ffffff;
+
+          .arrow {
+            width: 1.2rem;
+            vertical-align: middle;
+          }
+        }
+      }
+      .advertising {
+        width: 100%;
+        min-height: 7.3rem;
+        background: linear-gradient( 29deg, #3C19B8 0%, #902ED8 100%);
+        border-radius: var(--van-dialog-radius);
+        margin-top: 1.46rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        line-height: 1.85rem;
+        padding: 1.33rem 1.26rem;
+        
+        .joinBtn {
+          font-size: 1rem;
+          margin-top: 1rem;
+        }
       }
     }
+
   }
+    .button {
+      width: 100%;
+      margin-top: auto;
+      background: #5816C7;
+      border: none;
+    }
   .inout {
     left: 0;
-  }
-  .button {
-    width: 100%;
-    margin-top: auto;
   }
 }
 </style>
