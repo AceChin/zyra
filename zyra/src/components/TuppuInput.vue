@@ -38,10 +38,11 @@ const onInput = (value) => {
 .tuppuInput {
   display: flex;
   border-radius: 4px;
-  border: 1px solid #B8B8B8;
+  border: 1px solid #464F87;
   padding: 8px 12px;
   justify-content: space-between;
   align-items: center;
+  background-color: #1E255A;
 
   .input {
     background-color: transparent;
@@ -55,13 +56,12 @@ const onInput = (value) => {
   }
   .input::placeholder {
     font-weight: 600;
-    font-size: 0.9rem;
-    color: #848484;
+    font-size: 1rem;
+    color: #7C84A1;
   }
 
   .suffix {
-    font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #B8B8B8;
   }
 }

@@ -98,15 +98,37 @@
     .title {
       font-weight: 600;
       font-size: 1.15rem;
-      color: var(--van-primary-color);
+      color: #ffffff;
       line-height: 1.6rem;
       margin-top: 1.7rem;
+    }
+    .rechargeBox {
+      border-radius: 8px;
+      background-color: #192152;
+      color: #B8B8B8;
+      padding: 0.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+      }
     }
     .button {
       width: 57vw;
       margin: 0 auto;
       margin-top: 1.33rem;
       display: block;
+    }
+    .tips {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: #7C84A1;
+      line-height: 1.1rem;
+      margin-top: 5px;
+      margin-bottom: 1rem;
     }
   }
 }

@@ -113,5 +113,6 @@ web3Store.setInviteCode(paramsObject.inviteCode);
   --van-button-radius: 10px;
   --van-text-color: #ffffff;
   --van-overlay-background: rgba(0, 0, 0, 0.8);
+  --van-field-placeholder-text-color: #7C84A1;
 }
 </style>

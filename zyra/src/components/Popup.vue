@@ -25,8 +25,10 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
   .popupContent {
-    background-color: #222222;
+    background-color: #131937;
     padding: 1.6rem;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
 
     .close {
       position: absolute;
