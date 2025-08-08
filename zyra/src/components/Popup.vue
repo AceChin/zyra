@@ -4,7 +4,7 @@
     class="popupContent"
     position="bottom"
     @close="onClose">
-      <img @click="onClose" class="close" src="@/assets/images/closeBtn.png" />
+      <img @click="onClose" class="close" src="@/assets/images/closePopup.png" />
       <slot />
     </van-popup>
 </template>
@@ -32,6 +32,8 @@ const props = defineProps({
       position: absolute;
       top: 1.6rem;
       right: 1.6rem;
+      width: 1.53rem;
+      height: 1.53rem;
     }
   }
 </style>

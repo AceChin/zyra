@@ -3,13 +3,24 @@
     <header>
       <p class="title"></p>
       <p class="recordIcon" @click="() => toPage('/assets/record')">
-        {{ $t('home.record') }}
+        <!-- {{ $t('home.assetsTitle') }} -->
       </p>
     </header>
     <main>
       <div class="total">
-        <p class="title">{{ $t('home.total') }}</p>
-        ≈<span class="price">${{ totalAmount }}</span>
+        <img class="bg" src="@/assets/images/invitedBox.png">
+        <div class="content">
+          <div class="title">
+            {{ $t('home.total') }}
+
+            <p class="recordIcon" @click="() => toPage('/assets/record')">
+              <img class="icon" src="../../assets/images/record.png" alt="">
+              {{ $t('home.record') }}
+            </p>
+          </div>
+          <div class="unit">≈</div>
+          <span class="price">${{ totalAmount }}</span>
+        </div>
       </div>
       <div class="records">
         <AssetsItem

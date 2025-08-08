@@ -6,7 +6,7 @@
       <img class="logo" src="@/assets/images/logo.png" mode="widtnFix" />
       <div class="mainTitle">{{ nodeInfo.title || '' }}</div>
       <div class="date">{{ nodeStore.dateRang() }}</div>
-      <div class="nodeBox">
+      <div v-if="nodeStore.nodeList.length > 0" class="nodeBox">
         <img class="boxBg" src="@/assets/images/nodeBox.png" mode="widtnFix" />
 
         <div class="tabs">
@@ -38,6 +38,7 @@
 
         </div>
         <van-button
+          v-if="nodeContent.id"
           class="bottomButton"
           type="primary"
           :loading="loadingStore['node/buyNode']"

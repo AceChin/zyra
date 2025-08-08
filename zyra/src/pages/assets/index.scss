@@ -11,6 +11,8 @@
       font-size: 1.25rem;
       color: #E0F64B;
       line-height: 1.6rem;
+      position: relative;
+      z-index: 2;
     }
     .recordIcon {
       display: flex;
@@ -32,21 +34,54 @@
     
     .total {
       width: 94vw;
+      height: 8rem;
       margin: 0 auto;
-      padding: 0.9rem 1.4rem;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #B8B8B8;
-      line-height: 1.3rem;
-      margin-bottom: 8px;
+      position: relative;
+      box-sizing: border-box;
 
+      .bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .content {
+        position: relative;
+        z-index: 2;
+        font-size: 0.8rem;
+        color: #B8B8B8;
+        line-height: 1.3rem;
+        padding: 1rem;
 
-      .price {
-        font-weight: 600;
-        font-size: 1.2rem;
-        color: var(--van-primary-color);
-        line-height: 1.6rem;
-        margin-left: 4px;
+        .title {
+          font-size: 1rem;
+          color: #7C84A1;
+          display: flex;
+          justify-content: space-between;
+
+          .recordIcon {
+            color: #BDC6DC;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+          }
+
+          .icon {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 8px;
+          }
+        }
+        .unit {
+          font-size: 0.8rem;
+        }
+        .price {
+          font-size: 2.66rem;
+          color: #FFFFFF;
+          line-height: 3.4rem;
+          color: #ffffff;
+        }
       }
     }
 

@@ -4,10 +4,13 @@
       <img class="icon" :src="icons[$attrs.token]" alt="" />
       <p><b>{{ $attrs.token }}</b></p>
       <div class="operate">
-        <div v-if="$attrs.token == 'USDT'" class="linkBtn" @click="onWithdraw">{{ $t('button.withdraw') }}</div>
+        <!-- <div v-if="$attrs.token == 'USDT'" class="linkBtn" @click="onWithdraw">{{ $t('button.withdraw') }}</div> -->
         <!-- <div class="linkBtn" @click="onTransfer">转账</div> -->
         <!-- <div class="linkBtn" @click="flashExchange">闪兑</div> -->
-        <van-button v-if="$attrs.token == 'USDT'" :loading="loading" class="button" type="primary" round @click="onRecharge"
+        <van-button v-if="$attrs.token == 'USDT'" :loading="loading" class="button withdrawBtn" @click="onWithdraw"
+          >{{ $t('button.withdraw') }}</van-button
+        >
+        <van-button v-if="$attrs.token == 'USDT'" :loading="loading" class="button" type="primary" @click="onRecharge"
           >{{ $t('button.charge') }}</van-button
         >
       </div>
@@ -69,16 +72,16 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
       .item {
-        border: 1px solid var(--van-primary-color);
-        padding: 1rem;
+        padding: 1.2rem 1rem;
+        background: #131C34;
         border-radius: var(--van-dialog-radius);
         margin-bottom: 0.6rem;
         
         .top {
           display: flex;
           font-weight: 600;
-          font-size: 0.8rem;
-          color: #B8B8B8;
+          font-size: 1.13rem;
+          color: #8F9CC9;
           line-height: 1.4rem;
           width: 100%;
           align-items: center;
@@ -99,7 +102,16 @@ const props = defineProps({
               margin-right: 0.6rem;
             }
             .button {
-              height: 1.53rem;
+              border-radius: 4px;
+              height: 1.4rem;
+              font-size: 0.66rem;
+              color: #BDC6DC;
+              border: none;
+            }
+            .withdrawBtn {
+              margin-right: 6px;
+              background-color: #4543A9;
+              color: #BDC6DC;
             }
           }
         }
@@ -117,16 +129,19 @@ const props = defineProps({
             // min-height: 50%;
             display: flex;
             flex-direction: column;
+            font-size: 0.8rem;
+            line-height: 0.9rem;
             // text-align: center;
 
             .label {
-              color: #cccccc;
+              color: #7C84A1;
               white-space: nowrap;
               // margin-right: 1rem;
             }
             .amount {
               color: #FFFFFF;
               white-space: nowrap;
+              margin-top: 5px;
               // margin-right: 4rem;
             }
           }

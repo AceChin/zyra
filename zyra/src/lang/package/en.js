@@ -50,7 +50,7 @@ export default {
     network: 'Network',
     number: 'Amount',
     canUse: 'Available',
-    cantUse: 'Not Available',
+    cantUse: 'Unavailable',
     tips: 'Tips',
     home: 'Home',
     deal: 'Trade',
@@ -69,6 +69,7 @@ export default {
     plsInvited: 'Please enter the invitation code',
     invitationCode: 'Invitation Code',
     whiteBook: 'White Book',
+    assetsTitle: 'Deposite Hash',
   },
   button: {
     deal: 'Trade',

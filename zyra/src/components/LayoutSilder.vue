@@ -63,7 +63,7 @@ const { locale, t : $t } = useI18n()
 
 const router = useRouter();
 const web3Store = useWeb3Store()
-const visible = ref(true);
+const visible = ref(false);
 // const languageVisible = ref(false);
 const confirm = ref(null)
 
@@ -159,9 +159,9 @@ defineExpose({ open });
           }
           .name {
             font-size: 0.8rem;
-            line-height: 1rem;
+            line-height: 0.8rem;
             color: #BAA1FF;
-            margin-top: 0.2rem;
+            // margin-top: 0.2rem;
           }
         }
         .close {
@@ -213,6 +213,7 @@ defineExpose({ open });
   }
     .button {
       width: 100%;
+      height: 54px;
       margin-top: auto;
       background: #5816C7;
       border: none;

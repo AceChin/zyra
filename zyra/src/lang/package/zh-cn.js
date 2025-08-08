@@ -69,6 +69,7 @@ export default {
     plsInvited: '请先输入邀请码',
     invitationCode: '邀请码',
     whiteBook: '白皮书',
+    assetsTitle: 'Deposite Hash',
   },
   button: {
     deal: '去交易',
