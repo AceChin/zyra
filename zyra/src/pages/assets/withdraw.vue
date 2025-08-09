@@ -66,6 +66,7 @@ import { ref, computed } from "vue";
 import { useAssetsStore, useLoadingStore, useWeb3Store } from '@/stores'
 import TuppuInput from '../../components/TuppuInput.vue';
 import Confirm from '../../components/Confirm.vue'
+import { delay } from '@/utils/request'
 import { showToast } from "vant";
 import { useI18n } from 'vue-i18n'
 const { t : $t } = useI18n()
@@ -97,10 +98,11 @@ const sureWithdraw = async () => {
     token: 'USDT',
     amount: rechargeValue.value || 0
   })
-  // showToast($t('tips.withdrawSuccess'))
   await confirm.value.open($t('tips.withdrawSuccess'))
+  showToast($t('tips.withdrawSuccess'))
+  await delay(0.6)(0);
   web3Store.fetchUserInfo()
-  // history.back()
+  history.back()
 }
 
 const onClickLeft = () => history.back();
@@ -167,7 +169,7 @@ const clickAll = () => {
     font-size: 0.9rem;
     color: #B8B8B8;
     line-height: 1rem;
-    margin-right: 0.8rem  ;
+    margin-right: 0.8rem;
   }
   .inputBtn {
     height: 2.53rem;

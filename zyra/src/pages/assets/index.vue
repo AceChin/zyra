@@ -42,12 +42,12 @@
           <div class="title">{{ $t('tips.plsInput') }}</div>
           <TuppuInput
             v-model="rechargeValue"
-            :style="{margin: '0.6rem 0'}"
+            :style="{margin: '1.2rem 0'}"
             placeholder=""
             type="number"
             suffix="USDT" />
-          <div class="tips">{{ $t('tips.rechrgeTips') }}</div>
-          <div class="rechargeBox">
+          <!-- <div class="tips">{{ $t('tips.rechrgeTips') }}</div>  -->
+          <!-- <div class="rechargeBox">
             <div class="row">
               <span>{{ $t('home.realTimePrice') }}</span>
               <span>--</span>
@@ -64,7 +64,7 @@
               <span>{{ $t('home.realTimePrice') }}</span>
               <span>--</span>
             </div>
-          </div>
+          </div> -->
           <van-button
             class="button"
             type="primary"

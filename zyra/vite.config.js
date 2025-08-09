@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://a1.payezgo.com',
+        target: 'https://dapp.bitcoinzk.ai',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '/api')
       }

@@ -27,7 +27,7 @@ service.interceptors.request.use(
     const accessToken = window.sessionStorage.getItem("accessToken");
     config.headers.Authorization = accessToken ? ('Bearer ' + accessToken) : "";
     const language = window.localStorage.getItem("language") || "en-US";
-    config.headers["Accept-Language"] = language == "zh-CN" ? "zh-CN" : "en-US";
+    config.headers["Accept-Language"] = language;
     return config;
   },
   (error) => {

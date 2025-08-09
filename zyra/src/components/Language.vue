@@ -13,6 +13,12 @@
 <script setup>
 import enUS from 'vant/es/locale/lang/en-US';
 import zhCN from 'vant/es/locale/lang/zh-CN';
+import idID from 'vant/es/locale/lang/id-ID';
+import zhTW from 'vant/es/locale/lang/zh-TW';
+import viVN from 'vant/es/locale/lang/vi-VN';
+import thTH from 'vant/es/locale/lang/th-TH';
+import koKR from 'vant/es/locale/lang/ko-KR';
+import jaJP from 'vant/es/locale/lang/ja-JP';
 import { useI18n } from 'vue-i18n'
 import { Locale } from 'vant';
 import { useWeb3Store } from "@/stores";
@@ -22,13 +28,25 @@ const { t : $t, locale } = useI18n()
 const web3Store = useWeb3Store();
 
 const columns = [
+  { text: $t('home.english'), value: 'en-US' },
   { text: $t('home.chinese'), value: 'zh-CN' },
-  { text: "English", value: 'en-US' },
+  { text: $t('home.zhTW'), value: 'zh-TW' },
+  { text: $t('home.koKR'), value: 'ko-KR' },
+  { text: $t('home.jaJP'), value: 'ja-JP' },
+  { text: $t('home.thTH'), value: 'th-TH' },
+  { text: $t('home.viVN'), value: 'vi-VN' },
+  { text: $t('home.idID'), value: 'id-ID' },
 ]
 
 const vantLanguage = {
   'en-US': enUS,
   'zh-CN': zhCN,
+  'id-ID': idID,
+  'zh-TW': zhTW,
+  'vi-VN': viVN,
+  'th-TH': thTH,
+  'ko-KR': koKR,
+  'ja-JP': jaJP,
 }
 
 const props = defineProps({
