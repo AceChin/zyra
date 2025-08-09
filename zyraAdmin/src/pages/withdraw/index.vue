@@ -109,7 +109,7 @@
               @click="handleApprove(scope.row)"
             >
               <el-icon v-if="walletConnected"><Wallet /></el-icon>
-              {{ walletConnected ? "签名审核" : "需连接钱包" }}
+              {{ walletConnected ? "去转账" : "需连接钱包" }}
             </el-button>
             <el-button
               v-if="scope.row.status === 'pending'"
@@ -151,7 +151,7 @@
 import { ref, onMounted, computed, reactive } from 'vue'
 import { withdrawAPI } from '../../utils/api'
 import { Search, Refresh, Wallet } from '@element-plus/icons-vue'
-import { signApprovalData } from '../../utils/wallet'
+import { signApprovalData, sendERC20Token } from '../../utils/wallet'
 import { useWalletStore } from '../../pinia'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
@@ -422,11 +422,58 @@ const handleReject = (row) => {
 
 // 审核提现申请
 const handleApprove = (row) => {
-  console.log(walletAccount.value)
-  withdrawAPI.getRawSignMessage({id: row.id, address: walletAccount.value}).then(res => {
-    executeApprove(row, res)
+  withdrawAPI.getWithdrawTransfer({id: row.id, address: walletAccount.value}).then(res => {
+    executeApprove2(row, res)
   })
-  
+}
+
+const executeApprove2 = (row, res) => {
+  const {to, amount, tokenContractAddress, decimals} = res;
+  console.log(to, amount, tokenContractAddress);
+  ElMessageBox.prompt(
+    `确认通过用户 ${row.memberId} 的提现申请？\n申请金额：${formatAmount(row.amount)} ${row.token}\n\n审核需要钱包签名确认\n\n手续费${formatAmount(row.fee)} ${row.token}`,
+    '审核提现申请',
+    {
+      confirmButtonText: '确认转账',
+      cancelButtonText: '取消',
+      inputPlaceholder: '请输入审核备注（可选）',
+      inputType: 'textarea'
+    }
+  ).then(async ({ value }) => {
+    if (!walletConnected.value) {
+      ElMessage.error('请先连接钱包进行签名')
+      return
+    }
+
+    try {
+      ElMessage.info('正在唤起钱包，请在钱包中完成转账...')
+      
+      // 钱包签名
+      const txHash = await sendERC20Token(tokenContractAddress, to, amount, decimals)
+      
+      // 调用API
+      const response = await withdrawAPI.approveWithdraw({
+        remark: value || '管理员审核通过',
+        withdrawId: row.id,
+        txHash: txHash,
+        address: walletAccount.value
+      })
+      
+      // 响应拦截器已经处理了错误情况，这里只处理成功情况
+      ElMessage.success('审核成功')
+      initData() // 刷新数据
+    } catch (error) {
+      console.error('审核失败:', error)
+      if (error.message.includes('用户拒绝')) {
+        ElMessage.warning('用户取消签名')
+      } else if (error.message.includes('钱包未连接')) {
+        ElMessage.error('请先连接钱包')
+      }
+      // 其他错误提示已在响应拦截器中处理
+    }
+  }).catch(() => {
+    ElMessage.info('已取消审核')
+  })
 }
 
 // 搜索处理

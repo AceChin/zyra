@@ -108,6 +108,41 @@ export const checkWalletConnection = async () => {
   return false
 }
 
+// 发起转账
+export const sendTransaction = async (to, amount) => {
+  if (!walletState.connected || !walletState.signer) {
+    throw new Error('请先连接钱包')
+  }
+
+  try {
+    // 转账参数
+    const tx = {
+      to: to,
+      value: ethers.parseEther(amount.toString()) // 将 ETH 金额转换为 Wei
+    }
+
+    // 发起交易
+    const transactionResponse = await walletState.signer.sendTransaction(tx)
+
+    ElMessage.success('交易已提交，等待确认中...')
+    console.log('交易哈希:', transactionResponse.hash)
+
+    // 等待交易确认
+    const receipt = await transactionResponse.wait()
+    ElMessage.success(`交易成功，区块号: ${receipt.blockNumber}`)
+    console.log('交易回执:', receipt)
+
+    return receipt
+  } catch (error) {
+    console.error('转账失败:', error)
+    if (error.code === 4001) {
+      throw new Error('用户拒绝交易')
+    } else {
+      throw new Error('转账失败: ' + error.message)
+    }
+  }
+}
+
 // 签名消息
 export const signMessage = async (message) => {
   if (!walletState.connected || !walletState.signer) {
@@ -215,6 +250,34 @@ export const setupWalletEvents = (onAccountChange, onChainChange, onDisconnect) 
   })
 }
 
+
+export const sendERC20Token = async (tokenContractAddress, toAddress, amount, decimals) =>  {
+  if (!walletState.connected || !walletState.signer) {
+    throw new Error('钱包未连接')
+  }
+
+  try {
+    const abi = ['function transfer(address to, uint amount) returns (bool)'];
+    // const toAddress = '0x用户B的地址';
+    // const amount = '100'; // 转账数量（单位：代币的最小单位，如USDT是6位小数）
+
+    // 初始化合约
+    const signer = walletState.signer
+    const contract = new ethers.Contract(tokenContractAddress, abi, signer);
+
+    // 发起转账（MetaMask会弹出确认）
+    const tx = await contract.transfer(toAddress, ethers.parseUnits(amount, decimals)); // USDT是6位小数
+    console.log('交易哈希:', tx.hash);
+    await tx.wait(); // 等待交易确认
+    // alert(`转账成功！交易哈希: ${tx.hash}`);
+    return tx.hash
+  } catch (error) {
+    console.error('转账失败:', error);
+    alert(`转账失败: ${error.message}`);
+  }
+}
+
+
 export default {
   walletState,
   checkMetaMaskInstalled,
@@ -225,5 +288,7 @@ export default {
   signApprovalData,
   formatAddress,
   getNetworkName,
-  setupWalletEvents
+  setupWalletEvents,
+  sendTransaction,
+  sendERC20Token
 } 

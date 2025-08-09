@@ -121,7 +121,13 @@ export const withdrawAPI = {
   // 获取提现详情
   getWithdrawDetail: (id) => {
     return api.get(`/withdraw/${id}`)
-  }
+  },
+
+ // 获取转账信息
+  getWithdrawTransfer: (params) => {
+    return api.get('/withdraw/transfer', { params })
+  },
+
 }
 
 export const userAPI = {
